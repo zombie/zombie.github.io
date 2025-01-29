@@ -1,0 +1,975 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.940
+About a year into the development of Portal,&nbsp;&nbsp;
+
+00:00:02.940 --> 00:00:06.240
+playtesters kept giving&nbsp;
+Valve very similar feedback.
+
+00:00:06.240 --> 00:00:11.460
+Something along the lines of "that was a great&nbsp;
+tutorial, I can't wait to play the actual game".
+
+00:00:11.460 --> 00:00:12.420
+*VCR Pause Sound Effect*
+
+00:00:12.420 --> 00:00:16.320
+Uh. Slight problem. That was the actual game.
+
+00:00:16.320 --> 00:00:21.240
+Despite playing through 14 or so&nbsp;
+hand-crafted puzzles, players were&nbsp;&nbsp;
+
+00:00:21.240 --> 00:00:26.280
+clearly missing some vital element that would&nbsp;
+tell them this was, indeed, a video game.
+
+00:00:26.280 --> 00:00:31.740
+And so after a lot of discussion, Valve&nbsp;
+decided that the game needed an antagonist:
+
+00:00:31.740 --> 00:00:34.140
+someone to push back against the player,&nbsp;&nbsp;
+
+00:00:34.140 --> 00:00:38.580
+to provide motivation to keep moving,&nbsp;
+and to put these puzzles into context:
+
+00:00:38.580 --> 00:00:41.940
+this was all training in order to defeat a boss.
+
+00:00:41.940 --> 00:00:44.940
+The end result was, of course, GLaDOS:
+
+00:00:44.940 --> 00:00:49.560
+a loopy AI overlord with a&nbsp;
+biting, passive-aggressive wit.
+
+00:00:49.560 --> 00:00:52.680
+She teases you, taunts you, tricks you.
+
+00:00:52.680 --> 00:00:57.600
+And the whole game leads up to a climactic&nbsp;
+one-on-one showdown in her central chamber.
+
+00:00:57.600 --> 00:01:01.560
+GLaDOS: "Well, you found me.&nbsp;
+Congratulations. Was it worth it?
+
+00:01:01.560 --> 00:01:07.260
+Because despite your violent behaviour, the only&nbsp;
+thing you've managed to break so far is my heart."
+
+00:01:07.260 --> 00:01:10.560
+Thanks to sharp writing and killer voice acting,&nbsp;&nbsp;
+
+00:01:10.560 --> 00:01:14.400
+she has become one of the most iconic&nbsp;
+video game villains of all time.
+
+00:01:14.400 --> 00:01:19.920
+But, says Valve's Robin Walker, "her&nbsp;
+genesis begins with a straightforward&nbsp;&nbsp;
+
+00:01:19.920 --> 00:01:23.940
+process of us trying to solve the&nbsp;
+core gameplay problem in Portal".
+
+00:01:25.020 --> 00:01:29.940
+Now if you ask me, the fact that&nbsp;
+GLaDOS may never have existed if&nbsp;&nbsp;
+
+00:01:29.940 --> 00:01:34.200
+it wasn't for this feedback goes&nbsp;
+to show the value of playtesting.
+
+00:01:34.200 --> 00:01:38.820
+Not to be confused with quality&nbsp;
+assurance - that's for rooting out bugs.
+
+00:01:38.820 --> 00:01:41.700
+Or focus testing - that's for market research.
+
+00:01:41.700 --> 00:01:46.200
+No: playtesting is simply watching&nbsp;
+people play through a chunk of the game
+
+00:01:46.200 --> 00:01:49.710
+- sometimes with a questionnaire&nbsp;
+or interview at the end -
+
+00:01:49.710 --> 00:01:54.300
+and then using what you see and hear&nbsp;
+to drive changes in the game's design.
+
+00:01:54.300 --> 00:01:58.800
+For example, if Valve sees that&nbsp;
+players are routinely getting&nbsp;&nbsp;
+
+00:01:58.800 --> 00:02:02.190
+themselves killed when trying&nbsp;
+to redirect these energy balls
+
+00:02:02.190 --> 00:02:04.350
+- perhaps they should make a change -
+
+00:02:04.350 --> 00:02:09.300
+like having it so you can only place portals on&nbsp;
+walls that are way above the player's height.
+
+00:02:09.300 --> 00:02:15.720
+And so on Portal, this approach was used to&nbsp;
+touch up almost every aspect of the game.
+
+00:02:15.720 --> 00:02:19.980
+Valve used playtesting to make sure&nbsp;
+the learning curve was perfect,
+
+00:02:19.980 --> 00:02:22.860
+they used it to remove moments of frustration,
+
+00:02:22.860 --> 00:02:25.800
+to make sure players noticed key objects,
+
+00:02:25.800 --> 00:02:28.380
+to improve the pacing, to tweak the difficulty,
+
+00:02:28.380 --> 00:02:30.780
+and to ensure the storyline was coherent.
+
+00:02:30.780 --> 00:02:36.720
+Playtesting even led to the game's iconic visual&nbsp;
+style, with those sterile white walls and floor.
+
+00:02:36.720 --> 00:02:40.560
+Originally, the game featured&nbsp;
+cluttered and grungy environments,&nbsp;&nbsp;
+
+00:02:40.560 --> 00:02:44.340
+but playtesters found it hard to&nbsp;
+identify the key puzzle elements.
+
+00:02:44.340 --> 00:02:47.760
+In one test, a player spent half an hour trying to&nbsp;&nbsp;
+
+00:02:47.760 --> 00:02:51.420
+push a shelf onto a button - while&nbsp;
+completely ignoring a nearby box.
+
+00:02:51.420 --> 00:02:56.100
+Kim Swift - one of the key developers&nbsp;
+on the project - calls playtesting&nbsp;&nbsp;
+
+00:02:56.100 --> 00:03:00.360
+"the most important thing that we&nbsp;
+learned since coming to Valve".
+
+00:03:00.360 --> 00:03:04.620
+You see, if you didn't know, Portal&nbsp;
+started life as Narbacular Drop:
+
+00:03:04.620 --> 00:03:07.800
+a student project made at&nbsp;
+Digipen University in Washington.
+
+00:03:07.800 --> 00:03:12.060
+hey were invited to show the game off at&nbsp;
+Valve's headquarters and about halfway&nbsp;&nbsp;
+
+00:03:12.060 --> 00:03:17.460
+through the demo, CEO Gabe Newell stopped the&nbsp;
+presentation to offer the entire team a job.
+
+00:03:17.460 --> 00:03:22.860
+Their goal was to remake the game in the source&nbsp;
+engine, and within the Half-Life universe.
+
+00:03:22.860 --> 00:03:28.080
+And to help, Valve introduced the small&nbsp;
+student team to its game development process.
+
+00:03:28.740 --> 00:03:30.120
+Here's how it works.
+
+00:03:30.120 --> 00:03:33.960
+You start with a goal: perhaps, in this case,&nbsp;&nbsp;
+
+00:03:33.960 --> 00:03:38.040
+to make a puzzle that is clearly&nbsp;
+readable, and satisfying to solve.
+
+00:03:38.040 --> 00:03:41.220
+You then take a stab at reaching that goal,&nbsp;&nbsp;
+
+00:03:41.220 --> 00:03:44.880
+by designing something - in&nbsp;
+this case, a test chamber.
+
+00:03:44.880 --> 00:03:50.460
+Next, you evaluate whether your design&nbsp;
+reached that goal by doing a playtest.
+
+00:03:50.460 --> 00:03:54.960
+And if it doesn't meet the grade,&nbsp;
+change the design and repeat.
+
+00:03:54.960 --> 00:03:58.920
+Valve keeps going with this&nbsp;
+iterative process until it&nbsp;&nbsp;
+
+00:03:58.920 --> 00:04:04.980
+is "no longer excruciatingly painful to watch&nbsp;
+the playtests", says developer David Speyrer.
+
+00:04:04.980 --> 00:04:09.540
+GLaDOS: "Fantastic! You remained&nbsp;
+resolute and resourceful in an&nbsp;&nbsp;
+
+00:04:09.540 --> 00:04:11.760
+atmosphere of extreme pessimism."
+
+00:04:12.300 --> 00:04:15.300
+Perhaps, given the subjects&nbsp;
+of its most famous games,&nbsp;&nbsp;
+
+00:04:15.300 --> 00:04:21.000
+its apt that Valve sees game development as&nbsp;
+an engineering problem or a scientific study.
+
+00:04:21.000 --> 00:04:26.640
+Valve's former in-house psychologist,&nbsp;
+Mike Ambinder, says "we see our game&nbsp;&nbsp;
+
+00:04:26.640 --> 00:04:33.300
+designs as hypotheses and our playtests as&nbsp;
+experiments to validate these hypotheses".
+
+00:04:33.300 --> 00:04:38.940
+Now, it should be said that playtesting&nbsp;
+is by no means exclusive to Valve.
+
+00:04:38.940 --> 00:04:44.400
+And indeed, every game developer sources&nbsp;
+player feedback at some point in the process.
+
+00:04:44.400 --> 00:04:50.520
+But the difference is that Valve is obsessed&nbsp;
+with it, to an almost religious degree.
+
+00:04:51.180 --> 00:04:55.800
+Ambinder calls playtesting "the most important&nbsp;
+part of the game development process".
+
+00:04:56.640 --> 00:04:58.920
+Newell calls it "our secret weapon".
+
+00:04:58.920 --> 00:05:02.280
+And a designer who joined the studio in 2018 said&nbsp;&nbsp;
+
+00:05:02.280 --> 00:05:05.880
+“I always heard that Valve does a lot of&nbsp;
+playtesting before I came to work here,&nbsp;&nbsp;
+
+00:05:05.880 --> 00:05:09.360
+and I was not prepared for the amount&nbsp;
+of playtesting this company does".
+
+00:05:09.960 --> 00:05:12.300
+Valve does playtesting early.
+
+00:05:12.300 --> 00:05:18.000
+Swift and her team started running playtests of&nbsp;
+Portal after just one week of starting to build&nbsp;&nbsp;
+
+00:05:18.000 --> 00:05:22.500
+the game at Valve, even though they only&nbsp;
+had one half-finished room to show people.
+
+00:05:22.500 --> 00:05:24.180
+And then do it often.
+
+00:05:24.180 --> 00:05:27.180
+Portal was playtested practically every week.
+
+00:05:27.180 --> 00:05:30.420
+They'd do a playtest on Friday,&nbsp;
+discuss the results on Monday,&nbsp;&nbsp;
+
+00:05:30.420 --> 00:05:34.800
+apply the lessons the rest of the&nbsp;
+week, and test again on Friday.
+
+00:05:34.800 --> 00:05:36.960
+It sounds extreme.
+
+00:05:36.960 --> 00:05:41.340
+But I think this devotion to playtesting&nbsp;
+makes a lot more sense when you learn&nbsp;&nbsp;
+
+00:05:41.340 --> 00:05:46.440
+about the disastrous development of&nbsp;
+Valve's very first game, Half-Life.
+
+00:05:47.460 --> 00:05:50.400
+About two months before&nbsp;
+Half-Life was supposed to ship,&nbsp;&nbsp;
+
+00:05:50.400 --> 00:05:54.480
+Valve realised that the game... well, sucked.
+
+00:05:54.480 --> 00:05:58.560
+The developer said "you couldn't play the&nbsp;
+game all the way through, none of the levels&nbsp;&nbsp;
+
+00:05:58.560 --> 00:06:02.580
+tied together well, and there were serious&nbsp;
+technical problems with most of the game.
+
+00:06:02.580 --> 00:06:05.460
+As a whole the game just wasn't working."
+
+00:06:05.460 --> 00:06:10.800
+The only real option on the table was to&nbsp;
+scrap the whole thing and start from scratch.
+
+00:06:10.800 --> 00:06:15.060
+But this time, they would do things&nbsp;
+differently - which lead to two game&nbsp;&nbsp;
+
+00:06:15.060 --> 00:06:18.120
+development philosophies that are&nbsp;
+still present in the studio today.
+
+00:06:18.120 --> 00:06:23.520
+One is the idea of the cabal: where&nbsp;
+the staff is split up into tiny,&nbsp;&nbsp;
+
+00:06:23.520 --> 00:06:27.960
+multi-disciplined teams who each take complete&nbsp;
+ownership of a small chunk of the game.
+
+00:06:27.960 --> 00:06:32.520
+But the other is frequent playtesting, from&nbsp;
+the very earliest point of development.
+
+00:06:32.520 --> 00:06:36.780
+This time, if the game sucked,&nbsp;
+they wanted to know right away.
+
+00:06:36.780 --> 00:06:42.420
+So, about three months into development of the&nbsp;
+restarted Half-Life, they started playtesting.
+
+00:06:42.420 --> 00:06:45.120
+They found random gamers in video game shops,&nbsp;&nbsp;
+
+00:06:45.120 --> 00:06:50.100
+and contacted people who filled in those little&nbsp;
+registration cards you got in old PC boxes.
+
+00:06:50.100 --> 00:06:53.220
+They'd sit them down in front of&nbsp;
+the game and just watch them play.
+
+00:06:53.220 --> 00:06:56.820
+Each test would result in dozens&nbsp;
+of things that needed to be fixed,&nbsp;&nbsp;
+
+00:06:56.820 --> 00:06:59.340
+changed, added, or deleted from the game.
+
+00:06:59.340 --> 00:07:04.560
+Like, after watching some playtesters break&nbsp;
+every crate in a level, Valve realised it&nbsp;&nbsp;
+
+00:07:04.560 --> 00:07:08.880
+probably needed to stuff some of those boxes&nbsp;
+with goodies like ammo and health packs.
+
+00:07:08.880 --> 00:07:14.640
+And this new process obviously worked: this&nbsp;
+version of Half-Life was a huge success,&nbsp;&nbsp;
+
+00:07:14.640 --> 00:07:19.020
+and is now seen as one of the most&nbsp;
+important and influential games ever made.
+
+00:07:19.020 --> 00:07:24.360
+And, as such, Valve would use playtesting&nbsp;
+extensively in all of its future games.
+
+00:07:24.360 --> 00:07:29.700
+On Half-Life 2, Valve planned to give out&nbsp;
+the gravity gun towards the end of the game,&nbsp;&nbsp;
+
+00:07:29.700 --> 00:07:34.260
+but players loved using it so much, the team&nbsp;
+decided to make it available much sooner.
+
+00:07:34.260 --> 00:07:38.460
+On Left 4 Dead, playtesters found it hard&nbsp;
+to find teammates who were in trouble,&nbsp;&nbsp;
+
+00:07:38.460 --> 00:07:41.700
+which led to the x-ray outlines&nbsp;
+of your fellow survivors.
+
+00:07:41.700 --> 00:07:46.980
+And on Portal 2, a paint type that&nbsp;
+let you walk on walls was scrapped,&nbsp;&nbsp;
+
+00:07:46.980 --> 00:07:49.680
+when it made multiple playtesters feel queasy.
+
+00:07:49.680 --> 00:07:54.120
+The arrival of Steam allowed Valve&nbsp;
+to go further - converting millions&nbsp;&nbsp;
+
+00:07:54.120 --> 00:07:57.120
+of online players into post-launch playtesters.
+
+00:07:57.120 --> 00:08:01.440
+When Steam's data showed that lots of&nbsp;
+players were getting stuck in Episode One,&nbsp;&nbsp;
+
+00:08:01.440 --> 00:08:05.280
+they released a patch to reduce the&nbsp;
+difficulty of a tricky siege battle.
+
+00:08:05.280 --> 00:08:09.840
+Plus, playtesting was instrumental&nbsp;
+when exploring an all-new technology,&nbsp;&nbsp;
+
+00:08:09.840 --> 00:08:12.240
+virtual reality, for Half-Life: Alyx.
+
+00:08:12.240 --> 00:08:17.160
+For instance, Valve learned that a player's&nbsp;
+tolerance for standing around watching people&nbsp;&nbsp;
+
+00:08:17.160 --> 00:08:22.140
+talk was significantly lower in virtual&nbsp;
+reality, so had to speed up the game's pace.
+
+00:08:22.140 --> 00:08:27.480
+"Player behaviour helped us navigate VR&nbsp;
+development," says Valve's Christine Phelan.
+
+00:08:27.480 --> 00:08:32.220
+"You could almost think of the player as another&nbsp;
+designer. There is barely a moment in the game&nbsp;&nbsp;
+
+00:08:32.220 --> 00:08:37.260
+that wasn't improved by what playtesters told&nbsp;
+us and showed us through their play behaviour".
+
+00:08:38.160 --> 00:08:44.280
+So, from Half-Life 1 to Half-Life: Alyx,&nbsp;
+playtesting has been an invaluable tool for Valve.
+
+00:08:44.280 --> 00:08:49.200
+So I want to share some tips from the developers,&nbsp;
+to show you how to playtest more effectively.
+
+00:08:49.200 --> 00:08:53.760
+Though it should be stated: Valve&nbsp;
+is not like other companies.
+
+00:08:53.760 --> 00:08:58.500
+From its unorthodox organisational&nbsp;
+structure to its near infinite resources,&nbsp;&nbsp;
+
+00:08:58.500 --> 00:09:02.220
+there are very few companies on&nbsp;
+Earth who can copy what Valve does.
+
+00:09:02.220 --> 00:09:09.420
+And also: this approach may work best on super&nbsp;
+linear, extremely hand-crafted story games
+
+00:09:09.420 --> 00:09:14.880
+- and other techniques, like heat maps,&nbsp;
+may work better for other types of game.
+
+00:09:14.880 --> 00:09:17.400
+But, with those caveats out of the way,&nbsp;&nbsp;
+
+00:09:17.400 --> 00:09:20.820
+perhaps their experience can still&nbsp;
+provide some useful guidance.
+
+00:09:21.360 --> 00:09:24.480
+So, tip number one is test early.
+
+00:09:24.480 --> 00:09:27.240
+Valve says "playtesting is where we make&nbsp;&nbsp;
+
+00:09:27.240 --> 00:09:30.720
+the vast majority of our most&nbsp;
+important changes to our game.
+
+00:09:30.720 --> 00:09:35.220
+So we try to do it as early as possible on&nbsp;
+the project, to get the most value out of it."
+
+00:09:35.220 --> 00:09:39.300
+When you identify a problem early&nbsp;
+on, you have time to go back to&nbsp;&nbsp;
+
+00:09:39.300 --> 00:09:42.180
+the drawing board and develop an&nbsp;
+effective solution to the problem.
+
+00:09:42.180 --> 00:09:47.880
+But do it too late, and sometimes the only way to&nbsp;
+fix a problem is with a flimsy band-aid solution.
+
+00:09:47.880 --> 00:09:52.860
+Like, uh, I dunno, having the characters just&nbsp;
+tell you the solution to a crummy puzzle.
+
+00:09:52.860 --> 00:09:58.020
+Valve may start testing within a few days of&nbsp;
+prototyping a mechanic or designing a level.
+
+00:09:58.020 --> 00:10:03.240
+Even if it looks hideously ugly, with programmer&nbsp;
+art or bright orange textures on all the walls.
+
+00:10:03.240 --> 00:10:07.140
+But this actually helps them avoid&nbsp;
+wasting time on other aspects:&nbsp;&nbsp;
+
+00:10:07.140 --> 00:10:11.460
+there's no point investing heavily&nbsp;
+in art or audio if the game mechanic&nbsp;&nbsp;
+
+00:10:11.460 --> 00:10:14.400
+is gonna be completely changed&nbsp;
+- or cut from the game entirely.
+
+00:10:14.400 --> 00:10:17.160
+Number two is test often.
+
+00:10:17.160 --> 00:10:19.680
+Valve typically tests every single week,&nbsp;&nbsp;
+
+00:10:19.680 --> 00:10:22.740
+to make sure that they are constantly&nbsp;
+iterating on player feedback.
+
+00:10:22.740 --> 00:10:25.860
+This also leads to a huge amount of data.
+
+00:10:25.860 --> 00:10:30.120
+Each Half-Life 2 chapter had about&nbsp;
+100 playtesters, for example.
+
+00:10:30.120 --> 00:10:33.300
+And that mass of information can be invaluable.
+
+00:10:33.300 --> 00:10:37.560
+By having a huge number of people look&nbsp;
+at the game, Valve can look for common&nbsp;&nbsp;
+
+00:10:37.560 --> 00:10:42.360
+trends in the feedback, and avoid tweaking&nbsp;
+the game based on a few weird outliers.
+
+00:10:42.360 --> 00:10:45.840
+And the more experience you have seeing&nbsp;
+people interact with your designs,&nbsp;&nbsp;
+
+00:10:45.840 --> 00:10:48.840
+the better you'll get at preempting&nbsp;
+this feedback in the future.
+
+00:10:48.840 --> 00:10:53.880
+Gabe Newell says "after you've watched a couple&nbsp;
+hundred playtests, you start to develop a much&nbsp;&nbsp;
+
+00:10:53.880 --> 00:10:57.900
+better sense of what are successful&nbsp;
+and unsuccessful design strategies".
+
+00:10:57.900 --> 00:11:01.680
+So, some famous lessons learnt&nbsp;
+at Valve include "players don't&nbsp;&nbsp;
+
+00:11:01.680 --> 00:11:04.380
+learn when stressed" and "players don't look up".
+
+00:11:04.380 --> 00:11:07.320
+Number three is shut up and watch.
+
+00:11:07.320 --> 00:11:12.180
+A playtest should try to simulate the&nbsp;
+actual experience of playing the game.
+
+00:11:12.180 --> 00:11:16.200
+Which means the observers need to stay&nbsp;
+quiet for the duration of the test:
+
+00:11:16.200 --> 00:11:19.800
+no hints, no guidance, no&nbsp;
+answers to burning questions.
+
+00:11:19.800 --> 00:11:25.020
+"Nothing is quite so humbling as being forced&nbsp;
+to watch in silence as some poor playtester&nbsp;&nbsp;
+
+00:11:25.020 --> 00:11:29.880
+stumbles around your level for 20 minutes,&nbsp;
+unable to figure out the 'obvious' answer&nbsp;&nbsp;
+
+00:11:29.880 --> 00:11:35.100
+that you now realise is completely arbitrary and&nbsp;
+impossible to figure out", the studio has said.
+
+00:11:35.100 --> 00:11:38.700
+Post-game interviews and&nbsp;
+questionnaires can certainly happen
+
+00:11:38.700 --> 00:11:42.570
+- those were instrumental in solving&nbsp;
+the GLaDOS problem after all -
+
+00:11:42.570 --> 00:11:46.320
+but you'll often learn more by watching&nbsp;
+players than by talking to them.
+
+00:11:46.320 --> 00:11:50.340
+Swift says "they may tell you later&nbsp;
+that they like the game but you'll&nbsp;&nbsp;
+
+00:11:50.340 --> 00:11:54.300
+really tell by their body language whether&nbsp;
+or not they actually enjoyed themselves".
+
+00:11:54.300 --> 00:11:57.240
+It's also a common game design trope that&nbsp;&nbsp;
+
+00:11:57.240 --> 00:12:01.020
+playtesters like to offer potential&nbsp;
+solutions to the problems they face
+
+00:12:01.020 --> 00:12:05.220
+- but as they don't have insider&nbsp;
+knowledge of your vision or constraints,&nbsp;&nbsp;
+
+00:12:05.220 --> 00:12:08.280
+those solutions are usually better left ignored.
+
+00:12:08.280 --> 00:12:12.120
+Number four is designers should run playtests.
+
+00:12:12.120 --> 00:12:17.640
+Valve does not outsource testing to a special&nbsp;
+department or leave it with a publisher:
+
+00:12:17.640 --> 00:12:21.240
+playtesting is done by the people&nbsp;
+who are actually responsible for the&nbsp;&nbsp;
+
+00:12:21.240 --> 00:12:25.320
+design and execution of the&nbsp;
+level or mechanic in question.
+
+00:12:25.320 --> 00:12:27.240
+The cabal, from earlier.
+
+00:12:27.240 --> 00:12:30.300
+This shows the developers&nbsp;
+exactly what needs fixing,&nbsp;&nbsp;
+
+00:12:30.300 --> 00:12:33.300
+and can give much-needed&nbsp;
+motivation to improve the game.
+
+00:12:33.300 --> 00:12:38.760
+And player behaviour might inspire new puzzle&nbsp;
+solutions or ideas for the designers watching.
+
+00:12:38.760 --> 00:12:43.320
+Like, in Half-Life Alyx, players would&nbsp;
+instinctively cover their real-life mouth&nbsp;&nbsp;
+
+00:12:43.320 --> 00:12:48.120
+to stop Alyx from coughing, and alerting&nbsp;
+a gigantic blind zombie named Jeff.
+
+00:12:48.120 --> 00:12:52.320
+So Valve turned covering your&nbsp;
+mouth into an actual game mechanic.
+
+00:12:52.320 --> 00:12:55.140
+Number five is get the right people.
+
+00:12:55.140 --> 00:12:59.340
+Valve gets feedback from a huge&nbsp;
+variety of different playtesters,&nbsp;&nbsp;
+
+00:12:59.340 --> 00:13:02.580
+from fellow staff members to&nbsp;
+little kids to pro gamers.
+
+00:13:02.580 --> 00:13:06.960
+But its learned to always have a target&nbsp;
+audience in mind when making changes.
+
+00:13:06.960 --> 00:13:11.760
+Like, when Valve was figuring out how to&nbsp;
+make a climactic boss fight against GLaDOS,&nbsp;&nbsp;
+
+00:13:11.760 --> 00:13:14.820
+they initially got feedback&nbsp;
+from hardcore FPS players,&nbsp;&nbsp;
+
+00:13:14.820 --> 00:13:18.180
+who said the level needed more action,&nbsp;
+more challenge, and more skill.
+
+00:13:18.180 --> 00:13:20.580
+But that idea was a dud:
+
+00:13:20.580 --> 00:13:24.180
+when facing this tricky boss&nbsp;
+fight, says Erik Wolpaw,&nbsp;&nbsp;
+
+00:13:24.180 --> 00:13:27.960
+"the vast majority of playtesters who&nbsp;
+had gotten used to the slower-paced,&nbsp;&nbsp;
+
+00:13:27.960 --> 00:13:32.760
+cerebral nature of Portal were just&nbsp;
+frustrated, confused, and dissatisfied".
+
+00:13:32.760 --> 00:13:36.180
+They still wanted to satisfy&nbsp;
+those hardcore FPS players,&nbsp;&nbsp;
+
+00:13:36.180 --> 00:13:41.220
+but did so through optional content, like&nbsp;
+Portal's advanced chambers and challenge maps.
+
+00:13:41.220 --> 00:13:44.400
+Number six is to challenge your assumptions.
+
+00:13:44.400 --> 00:13:48.780
+Okay, so maybe the GLaDOS boss fight&nbsp;
+didn't need to be a test of skill.
+
+00:13:48.780 --> 00:13:53.280
+So, perhaps it needed to be the most&nbsp;
+complex puzzle in the entire game?
+
+00:13:53.280 --> 00:13:55.680
+Surely that would be a suitable climax.
+
+00:13:55.680 --> 00:13:59.820
+But, here's the thing - playtesters&nbsp;
+thought the game's mid-point escape,&nbsp;&nbsp;
+
+00:13:59.820 --> 00:14:03.360
+that bit where you use a portal to&nbsp;
+avoid falling into a pit of fire
+
+00:14:03.360 --> 00:14:07.260
+- players thought that was&nbsp;
+incredibly climactic and satisfying.
+
+00:14:07.260 --> 00:14:10.860
+Even though it's basically&nbsp;
+the easiest puzzle in Portal.
+
+00:14:10.860 --> 00:14:14.400
+But Valve realised the time&nbsp;
+pressure, the visual impact,&nbsp;&nbsp;
+
+00:14:14.400 --> 00:14:18.000
+and the high drama all made it&nbsp;
+way more exciting to players.
+
+00:14:18.000 --> 00:14:21.180
+So maybe they were overthinking&nbsp;
+the final boss, too.
+
+00:14:21.180 --> 00:14:25.500
+"We've been holding on to this idea that&nbsp;
+we need a complex puzzle at the end and&nbsp;&nbsp;
+
+00:14:25.500 --> 00:14:29.940
+it simply wasn't true", says Swift, and so&nbsp;
+they settled on a pretty simple sequence.
+
+00:14:29.940 --> 00:14:35.040
+It's very easy for game designers to make&nbsp;
+wonky assumptions about how players will act
+
+00:14:35.040 --> 00:14:39.240
+- I recently made a whole video about&nbsp;
+doing this in my own puzzle game.
+
+00:14:39.240 --> 00:14:42.480
+I'll drop a link to that one in&nbsp;
+the end screen of this video.
+
+00:14:43.080 --> 00:14:48.540
+Perhaps the most important tip, though,&nbsp;
+is that playtesting feedback is just data,&nbsp;&nbsp;
+
+00:14:48.540 --> 00:14:53.580
+and it's up to the designer how that data&nbsp;
+is interpreted, filtered, and applied.
+
+00:14:53.580 --> 00:14:58.320
+For example, Half-Life 2 originally&nbsp;
+had a very short introduction before&nbsp;&nbsp;
+
+00:14:58.320 --> 00:15:00.780
+Gordon Freeman grabbed a gun and started shooting.
+
+00:15:00.780 --> 00:15:02.580
+Playtesters loved it.
+
+00:15:02.580 --> 00:15:05.040
+Who wouldn't be excited when&nbsp;
+jumping into the action?
+
+00:15:05.040 --> 00:15:09.960
+And so, given this good feedback, it would be&nbsp;
+easy to keep the game exactly like that.
+
+00:15:09.960 --> 00:15:16.080
+But, despite the positive sentiment, writer&nbsp;
+Marc Laidlaw says Valve decided to keep working.
+
+00:15:16.080 --> 00:15:18.780
+They thought it would be better to delay combat.
+
+00:15:18.780 --> 00:15:22.920
+"We wanted you to witness the cops doing&nbsp;
+something horrible, and feel like what you&nbsp;&nbsp;
+
+00:15:22.920 --> 00:15:27.660
+were doing was a response to that - not that&nbsp;
+you were just a killing machine," says Laidlaw.
+
+00:15:27.660 --> 00:15:31.020
+And they thought it would lead to&nbsp;
+a better emotional pay-off if you&nbsp;&nbsp;
+
+00:15:31.020 --> 00:15:35.640
+had to wait a much longer time before&nbsp;
+finally getting Gordon's iconic crowbar.
+
+00:15:35.640 --> 00:15:40.560
+BARNEY: "Oh, and before I forget. I think&nbsp;
+you dropped this back in Black Mesa.
+
+00:15:41.340 --> 00:15:42.900
+Good luck out there, buddy."
+
+00:15:42.900 --> 00:15:47.160
+Here's the thing: playtesting&nbsp;
+is as useful as you make it.
+
+00:15:47.160 --> 00:15:52.380
+If you just bend the game to the whims and&nbsp;
+desires of every playtester who comes through,&nbsp;&nbsp;
+
+00:15:52.380 --> 00:15:57.540
+you'll end up with a dumbed-down game,&nbsp;
+or bland, design-by-committee sludge.
+
+00:15:57.540 --> 00:15:59.940
+But if you go in with a clear goal.
+
+00:15:59.940 --> 00:16:04.080
+A specific game you want to make, for a&nbsp;
+specific audience you want to entertain.
+
+00:16:04.080 --> 00:16:08.100
+And then use playtesting to validate&nbsp;
+whether you are hitting that goal,&nbsp;&nbsp;
+
+00:16:08.100 --> 00:16:12.540
+you can use feedback to unlock the&nbsp;
+incredible game you are trying to make.
+
+00:16:12.540 --> 00:16:14.040
+Oh, don't click off.
+
+00:16:14.040 --> 00:16:17.400
+I've got one last Portal story&nbsp;
+while the Patreon credits roll.
+
+00:16:17.400 --> 00:16:23.520
+So, the invention of GlaDOS is actually not&nbsp;
+the most dramatic change that Valve has made,&nbsp;&nbsp;
+
+00:16:23.520 --> 00:16:25.140
+in response to player feedback.
+
+00:16:25.140 --> 00:16:29.520
+During an internal game jam, held&nbsp;
+shortly after the release of Portal 1,&nbsp;&nbsp;
+
+00:16:29.520 --> 00:16:34.320
+a bunch of Valve developers came up with&nbsp;
+an experimental puzzle game called F-Stop.
+
+00:16:34.320 --> 00:16:38.220
+In this game, you use a camera&nbsp;
+to take photos of objects.
+
+00:16:38.220 --> 00:16:43.320
+Then, you can spawn that object elsewhere in the world&nbsp;
+- perhaps at a completely different scale.
+
+00:16:43.320 --> 00:16:48.360
+Gabe Newell loved the concept, and said it&nbsp;
+should be developed as a follow-up to Portal
+
+00:16:48.360 --> 00:16:50.520
+- meaning each game in the series would feature&nbsp;&nbsp;
+
+00:16:50.520 --> 00:16:53.100
+a different piece of technology&nbsp;
+developed at Aperture Science.
+
+00:16:53.100 --> 00:16:56.400
+But, after nearly a year of development,&nbsp;&nbsp;
+
+00:16:56.400 --> 00:17:04.200
+playtesters were very vocal in their feedback:&nbsp;
+Portal without portals just didn't work.
+
+00:17:04.200 --> 00:17:09.600
+And so Valve decided to scrap the game&nbsp;
+and start Portal 2 all over again.
+
+00:17:09.600 --> 00:17:13.860
+In recent years, we've been able to&nbsp;
+see what F-Stop might have looked like,&nbsp;&nbsp;
+
+00:17:13.860 --> 00:17:19.500
+as fans have used leaked assets and code&nbsp;
+to make various recreations of the game.
+
+00:17:19.500 --> 00:17:22.140
+But Valve never returned to the concept.
+
+00:17:22.140 --> 00:17:24.240
+If you want to play something similar,&nbsp;&nbsp;
+
+00:17:24.240 --> 00:17:29.340
+check out Superliminal, or wait for the&nbsp;
+upcoming photography puzzler, Viewfinder.
+
+00:17:29.340 --> 00:17:30.480
+Thanks for watching.
+

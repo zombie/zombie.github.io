@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Semantic Subtitles</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* max-width: 800px; */
+            margin: 0 auto;
+            /* padding: 20px; */
+            background-color: #f4f4f4;
+        }
+        #app-container {
+            float: right;
+            background-color: white;
+            /* padding: 20px; */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #video-controls {
+            display: flex;
+            align-items: center;
+            /* margin-top: 20px; */
+            gap: 10px;
+        }
+        #seek-input {
+            flex-grow: 1;
+        }
+        #player-frame {
+            width: 80vh;
+            height: 40vh;
+            margin: 1em;
+            /* margin-bottom: 20px; */
+        }
+        input, button {
+            /* padding: 10px; */
+            /* margin-bottom: 10px; */
+        }
+        #error {
+            color: red;
+            /* margin-top: 10px; */
+        }
+    </style>
+<link rel="icon" href="assets/favicon.png"><script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
+
+<body>
+    <div style="columns: 23em; padding: 1em 2em;">
+
+        <li><a href="?videoId=54ST8bwOVyc">"A Bird Made of Birds" | Sarah Kay</a></li>
+        <li><a href="?videoId=X-6jMi4e-0Q">Behind the Banksy Stunt </a></li>
+        <li><a href="?videoId=FWP41MXLMGY">An Empty City is Eerie Magic</a></li>
+        <li><a href="?videoId=R3LjJeeae68">Gravity is not a force. But what does that mean?</a></li>
+        <li><a href="?videoId=ovrzKCQ2JTM">An H of G</a></li>
+        <li><a href="?videoId=2doZROwdte4">David Foster Wallace - The Problem with Irony</a></li>
+        <li><a href="?videoId=SxdOUGdseq4">＂Simple Made Easy＂ - Rich Hickey (2011)</a></li>
+        <li><a href="?videoId=MGn9x4-Y_7A">Death of the Author</a></li>
+        <li><a href="?videoId=5gnlhmaM-dM">Elon Musk ｜ Philosophy Tube</a></li>
+        <li><a href="?videoId=G6egT4fddFc">enough</a></li>
+        <li><a href="?videoId=_ahvzDzKdB0">Growing a Language, by Guy Steele</a></li>
+        <li><a href="?videoId=oPwCvSH30WA">How to Buy Good Art for Less Than $100M</a></li>
+        <li><a href="?videoId=salgtCpST3A">How to Change What you Want</a></li>
+        <li><a href="?videoId=T6EOVCYx7mY">Is Art Meaningless？ ｜ Philosophy Tube</a></li>
+        <li><a href="?videoId=m7hdIIneypE">Is civility a sham？ ｜ Teresa Bejan</a></li>
+        <li><a href="?videoId=yCm9Ng0bbEQ">Is the world getting better or worse?｜ Steven Pinker</a></li>
+        <li><a href="?videoId=XhAQi2dMRUk">It is Much Easier to Destroy than Create</a></li>
+        <li><a href="?videoId=n2Tg-OmOztM">Loki, the MCU, and Narcissism</a></li>
+        <li><a href="?videoId=1tEPa_HYphI">Pushing Daisies is a Marvelous Thing! - FilmJoy</a></li>
+        <li><a href="?videoId=5hlZI6dfen0">The Social Network and the Layers of Filmmaking</a></li>
+        <li><a href="?videoId=XmxIK9p0SNM">Tomatoes, or How Not To Define ＂Art＂</a></li>
+        <li><a href="?videoId=9Yomqk0C6kE">Valve's ＂Secret Weapon＂</a></li>
+        <li><a href="?videoId=ALaTm6VzTBw">Weekend Wednesday</a></li>
+        <li><a href="?videoId=MSevAi_YarQ">Where on Earth Will People Live in the Future?</a></li>
+        <li><a href="?videoId=PCWg6KJgjeI">Why Are There So Few Smartphones In Popular Movies?</a></li>
+        <li><a href="?videoId=8FSpCAs5KZg">Why This Color Doesn't Actually Exist</a></li>
+        <li><a href="?videoId=8FJEtCvb2Kw">YouTube： Manufacturing Authenticity (For Fun and Profit!)</a></li>
+
+    </div>
+    <div id="app-container">
+        <iframe
+            id="player-frame"
+            src=""
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+        ></iframe>
+        <div id="error"></div>
+    </div>
+    <script>
+        function loadVideo(videoId) {
+            const videoUrlInput = document.getElementById('video-url');
+            const playerFrame = document.getElementById('player-frame');
+            const errorDiv = document.getElementById('error');
+
+            // Reset previous state
+            errorDiv.textContent = '';
+
+            try {
+                // const url = videoUrlInput.value.trim();
+                // const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+
+                // if (!videoIdMatch) {
+                //     throw new Error('Invalid YouTube URL');
+                // }
+
+                // const videoId = videoIdMatch[1];
+
+                // // Embed video with enable JS API and autoplay
+                playerFrame.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=0`;
+
+            } catch (error) {
+                errorDiv.textContent = error.message;
+                console.error(error);
+            }
+        }
+
+        function seekVideo(minutes, seconds) {
+            const playerFrame = document.getElementById('player-frame');
+            // const minutesInput = document.getElementById('seek-minutes');
+            // const secondsInput = document.getElementById('seek-seconds');
+            const errorDiv = document.getElementById('error');
+
+            // Check if video is loaded
+            if (!playerFrame.src) {
+                errorDiv.textContent = 'Please load a video first';
+                return;
+            }
+
+            // const minutes = parseInt(minutesInput.value) || 0;
+            // const seconds = parseInt(secondsInput.value) || 0;
+
+            const totalSeconds = minutes * 60 + seconds * 1;
+
+            try {
+                // Postmessage to control YouTube iframe
+                playerFrame.contentWindow.postMessage(
+                    JSON.stringify({
+                        event: 'command',
+                        func: 'seekTo',
+                        args: [totalSeconds, true]
+                    }),
+                    '*'
+                );
+            } catch (error) {
+                errorDiv.textContent = 'Error seeking video: ' + error.message;
+            }
+        }
+    </script>
+
+    <div class="toast" id="toastMessage">
+        <span id="toastText"></span>
+        <span id="closeToastButton" class="close-button">X</span>
+    </div>
+    <div class="container mt-1">
+        <div class="row justify-content-left">
+            <div id="introContainer" class="col-sm-9" style="display: none">
+
+                <img id="SemanticFinderLogo" src="./SemanticFinder.svg" alt="SemanticFinder Logo">
+                <div class="content" id="introContentDiv">
+                    <br>
+                    <h4>Frontend-only live semantic search with <a href="https://xenova.github.io/transformers.js/"
+                            target="_blank">transformers.js</a>. <a
+                            href="https://github.com/do-me/SemanticFinder">GitHub</a></h4>
+                    <p>
+                    <p>Semantic search right in your browser! Calculates the embeddings and cosine similarity
+                        client-side without server-side inferencing.
+                        Your <b>data is private</b> and stays in your browser.<br>
+                        Just copy & paste any text in the text area or load one more PDFs & web pages in the advanced settings and hit <b>Find</b>. Set a different chunk size for
+                        finer or coarser search.<br>
+                        <b>Large books</b> can be indexed too and searched in less than 2 seconds!<br> Examples:
+                        <a href="?hf=King_James_Bible_24f6dc4c">The Bible (en)</a>,
+                        <a href="?hf=Les_Misérables_2239df51">Les Misérables (fr)</a>,
+                        <a href="?hf=Das_Kapital_c1a84fba">Das Kapital (de)</a>,
+                        <a href="?hf=Don_Quijote_14a0b44">Don Quijote (es)</a>,
+                        <a href="?hf=Divina_Commedia_d5a0fa67">Divina Commedia (it)</a>,
+                        <a href="?hf=Iliad_8de5d1ea">Iliad (gr)</a>,
+                        <a href="?hf=IPCC_Report_2023_2b260928">IPCC Report 2023 (en)</a>.
+                        Full catalogue with pre-indexed examples on <a
+                            href="https://huggingface.co/datasets/do-me/SemanticFinder">Huggingface</a>.
+                        <a href="https://huggingface.co/datasets/do-me/SemanticFinder#create-semanticfinder-files"
+                            target="_blank">Contribute the indices of the documents you indexed</a>
+                        or open a <a href="https://github.com/do-me/SemanticFinder/issues/new" target="_blank">request
+                            on GitHub</a> with a source URL.
+                    </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-1">
+        <div class="row justify-content-center">
+            <div class="col-sm-7"> <!-- 80% column for text region-->
+                <form class="form-floating">
+                    <div class="form-group" id="formGroupCenter">
+                        <div class="row no-gutters">
+                            <div class="col-md-10">
+                                <div class="form-floating input-group mb-2">
+                                    <input type="text" id="query-text" class="form-control"
+                                        placeholder="Enter query here" value="food" />
+                                    <label for="query-text">Semantic Query</label>
+                                    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#advancedFeaturesContent" id="settingsButton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <button onclick="onSubmit(); return false;" id="submit_button"
+                                    class="btn btn-primary submit-button  btn-lg mb-2 form-control" disabled>
+                                    Loading...
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <!-- settings -->
+                        <div class="col-12">
+                            <div id="advancedFeaturesContent" class="collapse">
+                                <div class="card">
+                                    <!-- <div class="card-header">
+                                        <h5 class="card-title">Settings</h5>
+                                    </div>-->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <h6>Model Selection</h6>
+                                            <div class="col-md-8">
+                                                <div class="form-floating mb-2">
+                                                    <!-- all models from https://github.com/do-me/trending-huggingface-models + gte-tiny (lacking right tag: https://huggingface.co/TaylorAI/gte-tiny/discussions/5) -->
+                                                    <select class="form-select form-control " id="model-name">
+                                                        <option selected value="TaylorAI/gte-tiny">TaylorAI/gte-tiny | 💾22.9Mb 📥1752 ❤️102</option> <!--  smallest great model as default, rest based in HF trends -->
+                                                        <option value="nomic-ai/nomic-embed-text-v1.5">nomic-ai/nomic-embed-text-v1.5 | 💾548MB | 138MB 📥64
+                                                        <option value="Supabase/all-MiniLM-L6-v2">Supabase/all-MiniLM-L6-v2 | 💾90.4MB | 45.3MB | 23MB 📥21 ❤️2</option>
+                                                        <option value="Xenova/gte-small">Xenova/gte-small | 💾133MB | 66.7MB | 34MB 📥4 ❤️12</option>on-transformer-gym-walker2d-medium-replay | 💾4.61MB 📥0 ❤️0</option>
+
+                                                    </select>
+                                                    <label for="model-name">Model:</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-check form-switch mb-2">
+                                                    <input class="form-check-input" type="checkbox" role="switch"
+                                                        id="quantized" checked>
+                                                    <label class="form-check-label" for="quantized"
+                                                        title="Use ~4x smaller & faster quantized but less accurate models (good for low bandwidth)">Quantized</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Chunking Settings</h6>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating">
+                                                                <select class="form-select form-control"
+                                                                    id="split-type">
+                                                                    <option value="Sentence">Line</option>
+                                                                    <option value="Chars" selected># Chars</option>
+                                                                    <option value="Words"># Words</option>
+                                                                    <option value="Tokens"># Tokens</option>
+                                                                    <option value="Regex">Regex</option>
+                                                                    <option value="JinaAI">JinaAI Segmenter API</option>
+                                                                </select>
+                                                                <label for="split-type">Split by</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="split-param" class="form-control"
+                                                                    type="number" min="1" value="100" />
+                                                                <label for="split-param"># Chars</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>App Settings</h6>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input type="number" id="threshold" class="form-control"
+                                                                    value="20" min="1" step="1" />
+                                                                <label for="threshold"># Results</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="update-rate" class="form-control"
+                                                                    type="number" min="1" value="5" />
+                                                                <label for="update-rate"># Updates</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-check form-switch mb-2">
+                                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                                id="autoScrollIntoView">
+                                                            <label class="form-check-label" for="autoScrollIntoView"
+                                                                title="Turn on automatic scrolling to most relevant result">Autoscroll</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Include Words</h6>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="wordsToCheckAny" class="form-control"
+                                                                    type="text" value="" />
+                                                                <label for="wordsToCheckAny">Any of</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="wordsToCheckAll" class="form-control"
+                                                                    type="text" value="" />
+                                                                <label for="wordsToCheckAll">All of</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Exclude Words</h6>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="wordsToAvoidAny" class="form-control"
+                                                                    type="text" value="" />
+                                                                <label for="wordsToAvoidAny">Any of</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="form-floating mb-2">
+                                                                <input id="wordsToAvoidAll" class="form-control"
+                                                                    type="text" value="" />
+                                                                <label for="wordsToAvoidAll">All of</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6>Import one or multiple PDF File(s)</h6>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <input type="file" class="form-control mr-2"
+                                                                id="pdf-upload" multiple accept="application/pdf"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="confirm-pdf-upload">
+                                                                📂 Import</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h6>Import Remote PDF file(s) & web pages space-separated using <a href="https://corsproxy.io/" target="_blank">corsproxy.io</a></h6>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-floating mb-2">
+                                                            <input id="importPdfURL" class="form-control w-100" type="text"
+                                                                value="https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf" />
+                                                            <label for="importPdfURL">Import URL(s)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="confirm-remote-pdf-upload">
+                                                                ⬇️ Import</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h6>Import Local Index File</h6>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <input type="file" class="form-control mr-2"
+                                                                id="file-upload" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="confirm-upload">
+                                                                📂 Import</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h6>Import Remote Index File (<a href="https://huggingface.co/datasets/do-me/SemanticFinder#catalogue" target="_blank">Examples</a>)</h6>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-floating mb-2">
+                                                            <input id="importURL" class="form-control w-100" type="text"
+                                                                value="https://huggingface.co/datasets/do-me/SemanticFinder/resolve/main/Hansel_and_Gretel_4de079eb.json.gz" />
+                                                            <label for="importURL">Import URL</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex mb-2 align-items-center">
+                                                            <button type="button" class="btn btn-primary"
+                                                                id="confirm-remote-upload">
+                                                                ⬇️ Import</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h6>Export Index File</h6>
+
+                                            <div class="col-md-3">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textTitle" class="form-control w-100" type="text"
+                                                        value="Hansel and Gretel" />
+                                                    <label for="textTitle">Title</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textAuthor" class="form-control w-100" type="text"
+                                                        value="Brothers Grimm" />
+                                                    <label for="textAuthor">Author</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textYear" class="form-control w-100" type="number"
+                                                        min="1" value="1812" />
+                                                    <label for="textYear"># Year</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textLanguage" class="form-control w-100" type="text"
+                                                        value="en" />
+                                                    <label for="textLanguage">Language (en)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex mb-2 align-items-center">
+                                                    <button type="button" class="btn btn-primary" id="resetMetadata">🔄
+                                                        Metadata</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textSourceURL" class="form-control w-100" type="text"
+                                                        value="https://www.grimmstories.com/en/grimm_fairy-tales/hansel_and_gretel" />
+                                                    <label for="textSourceURL">Source URL</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-2">
+                                                    <input id="textNotes" class="form-control w-100" type="text"
+                                                        value="" />
+                                                    <label for="textNotes">Notes</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-floating mb-2">
+                                                    <input id="exportDecimals" class="form-control w-100" type="number"
+                                                        min="1" value="5" />
+                                                    <label for="exportDecimals"># Emb. Decimals</label>
+                                                </div>
+                                            </div>
+                                            <!-- Button for downloading only the index. However, considering
+                                                         that the index makes up for 99% file size, I don't see a good use case yet...-->
+                                            <div class="col-md-3" hidden>
+                                                <button type="button" id="exportEmbeddingsDict"
+                                                    class="btn btn-primary w-100">Index only</button>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="d-flex mb-2 align-items-center">
+                                                    <button type="button" class="btn btn-primary"
+                                                        id="exportEmbeddingsDictWithText">💾 Export</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h6>Style Preferences</h6>
+                                                <div class="row">
+                                            <div class="col-md-8"
+                                                title="Monospace | Calibri | Open Sans | Arial | Arial | Arial Black | Comic Sans MS | Courier New | Georgia | Impact | Times New Roman | Trebuchet MS | Verdana | Tahoma | Lucida Console | Lucida Sans Unicode | Palatino Linotype | Book Antiqua | Palatino | Symbol | Wingdings">
+                                                <div class="form-floating mb-2">
+                                                    <input id="font-family" class="form-control w-100" type="text"
+                                                        value="Open Sans" />
+                                                    <label for="font-family">Font-Family</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-2">
+                                                    <input id="font-size" class="form-control w-100" type="number"
+                                                        min="1" value="15" />
+                                                    <label for="font-size"># Font-Size</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <h6>Experimental Expert Settings (best leave defaults)</h6>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-check form-switch mb-2">
+                                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                                id="inferencingActive" checked>
+                                                            <label class="form-check-label" for="inferencingActive"
+                                                                title="Use only existing embeddings from index and do not inference anything but the user query">Inferencing</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-check form-switch mb-2">
+                                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                                id="firstOnly">
+                                                            <label class="form-check-label" for="firstOnly"
+                                                                title="Highlight only first match">First match only</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- progress bar -->
+                        <div class="col-12">
+                            <div class="progress" role="progressbar" aria-label="Loading model" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" id="loading-progress" style="width: 0;">""</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="progress" role="progressbar" aria-label="Progress Bar" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100" style="height: 75%">
+                                <div id="progressBarProgress" class="progress-bar progress-bar-striped"
+                                    style="width: 0%;">""
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!--  text box -->
+                        <div class="form-floating">
+                            <textarea id="input-text" class="form-control"
+                                placeholder="Enter">nil</textarea>
+                        </div>
+
+                        <!--  navigation buttons -->
+                        <div class="text-center" id="submitGroup">
+                            <button id="prev" class="btn btn-md btn-secondary mb-2 nav-button" disabled>👈
+                                prev
+                            </button>
+                            <button id="next" class="btn btn-md btn-secondary mb-2 nav-button" disabled>next
+                                👉
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-5"> <!-- 20% column -->
+                <div id="results">
+                    <ul id="results-list"></ul>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="display: none">
+                <div class="col-12">
+                    <div>
+                        <hr />
+                        <h4>Dimensionality Reduction (New🔥) </h4>
+                        <p>Run a search as usual or load an index. Then hit "Dim-Reduction" in the advanced settings.
+                            More iterations yield better results but take more time to compute. If the points are too
+                            small increase the radius. Using a fast wasm implementation of Barnes-Hut tSNE (<a
+                                href="https://github.com/Lv-291/wasm-bhtsne" target="_blank">wasm-bhtSNE</a>).</p>
+
+                        <div class="d-flex flex-row">
+                            <button type="button" class="btn btn-md btn-primary mb-2 nav-button"
+                                id="dimensionalityReduction" disabled>🌌 Dim-Reduction</button>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-floating mb-2">
+                                        <input id="dimReductionIterations" class="form-control w-100" type="number"
+                                            min="1" value="1000" />
+                                        <label for="dimReductionIterations"># Iterations</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating mb-2">
+                                        <input id="scatterplotRadius" class="form-control w-100" type="number" min="1"
+                                            value="800" />
+                                        <label for="scatterplotRadius"># Radius</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-2">
+                                        <input id="dimensionalityReductionSimilarityThreshold" class="form-control w-100" type="number" min="0" max="1" step="0.01" value="0" />
+                                        <label for="dimensionalityReductionSimilarityThreshold"># Similarity Threshold</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div id="plot-container">
+                            <canvas id="deckgl"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center" style="display: none">
+                <div class="col-12">
+                    <div>
+                        <hr />
+                        <h4>Chat</h4>
+                        <p>Enter a question to be answered and use the placeholders <b>SEARCH_RESULTS</b> or <b>FULL_TEXT</b> for context (Retrieval Augmented Generation, RAG).<br> If you encounter errors, the input is probably
+                            too long (either too many or too
+                            long results or too long prompt). Also, make
+                            sure to check the right prompting style! Xenova/Qwen1.5-1.8B-Chat is by far the best
+                            quantized
+                            model currently available and delivers good results. At some point <a href="https://github.com/xenova/transformers.js/pull/379"
+                                target="_blank">Falcon & Mistral/Zephyr models</a> will probably become available
+                            here.<br><b>Attention</b>: Loads very large models with
+                            more than 1.5Gb (!) of resources.</p>
+                        <div class="form-floating input-group mb-2">
+                            <input id="chat_query" class="form-control"
+                                value="Based on the following context, answer the question: What are these paragraphs about? Context: SEARCH_RESULTS">
+                            <label for="chat_query">Chat Query</label>
+                        </div>
+
+                        <div class="d-flex flex-row">
+                            <button id="get_chat" class="btn btn-md btn-primary mb-2 nav-button">💬 Chat</button>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-floating mb-2">
+                                        <select class="form-select form-control" id="chat-model-name">
+                                            <option selected value="Xenova/Qwen1.5-0.5B-Chat">Xenova/Qwen1.5-0.5B-Chat (0.482Gb)</option>
+                                            <option value="Xenova/Qwen1.5-1.8B-Chat">Xenova/Qwen1.5-1.8B-Chat (1.87Gb)</option>
+                                            
+                                            <option value="Xenova/LaMini-Flan-T5-783M">
+                                                Xenova/LaMini-Flan-T5-783M | 💾1.65Gb 📥17 ❤️20</option>
+                                            <option value="Xenova/t5-small">Xenova/t5-small | 💾81Mb 📥2
+                                                ❤️2</option>
+                                            <option value="Xenova/flan-t5-small">Xenova/flan-t5-small</option>
+                                            <option value="Xenova/LaMini-Flan-T5-783M">Xenova/LaMini-Flan-T5-783M
+                                            </option>
+                                            <option value="Xenova/LaMini-Flan-T5-248M">Xenova/LaMini-Flan-T5-248M
+                                            </option>
+                                            <option value="Xenova/LaMini-Flan-T5-77M">Xenova/LaMini-Flan-T5-77M</option>
+                                            <option value="Xenova/LaMini-T5-61M">Xenova/LaMini-T5-61M</option>
+                                            <option value="Xenova/LaMini-T5-738M">Xenova/LaMini-T5-738M</option>
+                                            <option value="Xenova/LaMini-T5-223M">Xenova/LaMini-T5-223M</option>
+                                            <option value="Xenova/mt5-small">Xenova/mt5-small</option>
+                                            <option value="Xenova/mt5-base">Xenova/mt5-base</option>
+                                            <option value="Xenova/t5-base">Xenova/t5-base</option>
+                                            <option value="Xenova/t5-v1_1-base">Xenova/t5-v1_1-base</option>
+                                            <option value="Xenova/flan-t5-base">Xenova/flan-t5-base</option>
+                                            <option value="Xenova/t5-v1_1-small">Xenova/t5-v1_1-small</option>
+                                            <option value="Xenova/blenderbot-400M-distill">
+                                                Xenova/blenderbot-400M-distill</option>
+                                            <option value="Xenova/blenderbot_small-90M">Xenova/blenderbot_small-90M
+                                            </option>
+                                            <option value="Xenova/long-t5-tglobal-base">Xenova/long-t5-tglobal-base
+                                            </option>
+                                            <option value="Xenova/long-t5-local-base">Xenova/long-t5-local-base</option>
+                                            <option value="Xenova/long-t5-tglobal-base-16384-book-summary">
+                                                Xenova/long-t5-tglobal-base-16384-book-summary</option>
+
+                                        </select>
+                                        <label for="model-name">Model:</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-2">
+                                        <input type="number" id="chat_max_new_tokens" class="form-control" value="10000"
+                                            min="1" step="1" />
+                                        <label for="max_new_tokens"># max new tokens</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="chat_text" class="ml-2"></div>
+                        <!-- progress bar -->
+                        <div class="col-12">
+                            <div class="progress" role="progressbar" aria-label="Loading model" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" id="chat-progress" style="width: 0;">""</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="progress" role="progressbar" aria-label="Progress Bar" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100" style="height: 75%">
+                                <div id="progressBarChat" class="progress-bar progress-bar-striped" style="width: 0%;">
+                                    ""
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <hr />
+                        <h4>Ollama Chat Integration (New🔥)</h4>
+                        <p>Enter a question to be answered and use the placeholders <b>SEARCH_RESULTS</b> or <b>FULL_TEXT</b> for context.<br> Install <a href="https://ollama.com/" target="_blank">Ollama</a> locally on macOS, Linux or Windows and connect your server (currently only default http://localhost:11434 supported).<br>
+                           Make sure to set the environment variable so that requests from SemanticFinder are allowed:<br>
+                            - on Windows Powershell: <code>$env:OLLAMA_ORIGINS="https://do-me.github.io"; ollama serve</code><br>
+                            - on Ubuntu: <code>OLLAMA_ORIGINS="https://do-me.github.io" ollama serve</code><br>
+                        Due to <a href="https://github.com/ollama/ollama/issues/669" target="_blank">CORS issues</a> currently only working on Chromium-based browsers like Chrome and Edge.</p>
+                        <div class="form-floating input-group mb-2">
+                            <input id="ollama_chat_query" class="form-control"
+                                value="Based on the following context, answer the question: What is this text about? Context: FULL_TEXT">
+                            <label for="ollama_chat_query">Chat Query</label>
+                        </div>
+
+                        <div class="d-flex flex-row">
+                            <button id="ollama_get_chat" class="btn btn-md btn-primary mb-2 nav-button">🦙 Chat</button>
+                            <div class="row">
+                                <div class="col-md-4" hidden>
+                                    <div class="form-floating mb-2">
+                                        <input type="text" id="ollama_chat_server" class="form-control" value="http://localhost:11434"/>
+                                        <label for="ollama_chat_server">Ollama Server</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-floating mb-8">
+                                        <input type="text" id="ollama_chat_model" class="form-control" value="llama2"/>
+                                        <label for="ollama_chat_model">Model</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" hidden>
+                                    <div class="form-floating mb-2">
+                                        <input type="number" id="ollama_chat_max_new_tokens" class="form-control" value="100"
+                                            min="1" step="1" />
+                                        <label for="ollama_chat_max_new_tokens"># max new tokens</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="ollama_chat_text" class="ml-2"></div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <hr />
+                        <h4>Summary (Retrieval Augmented Generation, RAG)</h4>
+                        <p>Summarizes the top search results. Works best with non-fictional texts and longer text
+                            chunks (>200 chars).<br><b>Attention</b>: Loads very large models with hundreds of MB!</p>
+                        <br>
+                        <div class="d-flex flex-row">
+                            <button id="get_summary" class="btn btn-md btn-primary mb-2 nav-button"
+                                disabled>📝 Summarize</button>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-floating mb-2">
+                                        <select class="form-select form-control" id="summary-model-name">
+
+                                            <option value="Xenova/distilbart-cnn-6-6">Xenova/distilbart-cnn-6-6</option>
+                                            <option value="Xenova/bart-large-cnn">Xenova/bart-large-cnn</option>
+                                            <option value="ahmedaeb/distilbart-cnn-6-6-optimised">
+                                                ahmedaeb/distilbart-cnn-6-6-optimised</option>
+                                            <option value="Xenova/distilbart-xsum-12-1">Xenova/distilbart-xsum-12-1
+                                            </option>
+                                            <option value="Xenova/distilbart-xsum-6-6">Xenova/distilbart-xsum-6-6
+                                            </option>
+                                            <option value="Xenova/distilbart-xsum-12-3">Xenova/distilbart-xsum-12-3
+                                            </option>
+                                            <option value="Xenova/distilbart-xsum-9-6">Xenova/distilbart-xsum-9-6
+                                            </option>
+                                            <option selected value="Xenova/distilbart-xsum-12-6">
+                                                Xenova/distilbart-xsum-12-6</option>
+                                            <option value="Xenova/distilbart-cnn-12-3">Xenova/distilbart-cnn-12-3
+                                            </option>
+                                            <option value="Xenova/distilbart-cnn-12-6">Xenova/distilbart-cnn-12-6
+                                            </option>
+                                            <option value="Xenova/bart-large-xsum">Xenova/bart-large-xsum</option>
+                                        </select>
+                                        <label for="model-name">Model:</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-2">
+                                        <input type="number" id="summary_max_new_tokens" class="form-control"
+                                            value="100" min="1" step="1" />
+                                        <label for="max_new_tokens"># max new tokens</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center flex-row">
+                            <p id="summary_text" class="ml-2"></p>
+                        </div>
+                        <!-- progress bar -->
+                        <div class="col-12">
+                            <div class="progress" role="progressbar" aria-label="Loading model" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-secondary" id="summary-progress" style="width: 0;">""</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="progress" role="progressbar" aria-label="Progress Bar" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100" style="height: 75%">
+                                <div id="progressBarSummary" class="progress-bar progress-bar-striped"
+                                    style="width: 0%;">""
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+</body>
+
+</html>
+
+<script>
+    function convertSecondsToMMSS(totalSeconds) {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    const paddedMinutes = minutes.toString().padStart(2, '0');
+    const paddedSeconds = seconds.toString().padStart(2, '0');
+    return `${paddedMinutes}:${paddedSeconds}`;
+}
+
+function parseSubtitleXML(xmlString) {
+    // Create a DOM parser
+    const parser = new DOMParser();
+    
+    // Parse the XML string
+    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+    
+    // Select all text elements
+    const textElements = xmlDoc.getElementsByTagName('text');
+    
+    // Convert HTML entities back to normal characters
+    const decodeHTMLEntities = (text) => {
+        const textArea = document.createElement('textarea');
+        textArea.innerHTML = text;
+        return textArea.value;
+    };
+    
+    // Map text elements to formatted lines
+    const subtitles = Array.from(textElements).map(elem => {
+        const start = parseFloat(elem.getAttribute('start'));
+        const duration = parseFloat(elem.getAttribute('dur'));
+        const end = start + duration;
+        const text = decodeHTMLEntities(elem.textContent.trim());
+        
+        return `[${convertSecondsToMMSS(start)} - ${convertSecondsToMMSS(end)}] ${text}`;
+    });
+    
+    return subtitles.join('\n');
+}
+
+const xml = `<?xml version="1.0" encoding="utf-8" ?><transcript><text start="0.12" dur="4.88">poos grooves miters stet Tails there are</text><text start="2.919" dur="4.241">so many ways to connect two pieces of</text><text start="5" dur="4.08">wood together but this hobby is filled</text><text start="7.16" dur="3.8">with internet no-- alls telling you one</text><text start="9.08" dur="4.519">is too weak or you&amp;#39;re not even a real</text><text start="10.96" dur="4">woodworker if you use this not that so</text><text start="13.599" dur="2.961">today I&amp;#39;m going to explain why they</text><text start="14.96" dur="3.44">might be wrong and give you the</text><text start="16.56" dur="4.04">fundamentals to cutting the only four</text><text start="18.4" dur="3.959">joints that beginners need for the new</text><text start="20.6" dur="3.36">folks out there we need to establish a</text><text start="22.359" dur="3.561">couple basic principles to better</text><text start="23.96" dur="3.92">understand in this video and help</text><text start="25.92" dur="4.519">clarify a common misconception about</text><text start="27.88" dur="4.719">glue being stronger than wood like a</text><text start="30.439" dur="5.001">bundle of straws wood is made up of a</text><text start="32.599" dur="5.161">bunch of long cellulose fibers but since</text><text start="35.44" dur="4.119">Mother Nature doesn&amp;#39;t have elastics the</text><text start="37.76" dur="3.799">wood is held together by an organic</text><text start="39.559" dur="3.761">polymer known as lignan have you ever</text><text start="41.559" dur="4">wondered why chopping down a tree is</text><text start="43.32" dur="4.399">much more difficult than splitting a log</text><text start="45.559" dur="4.281">imagine this is our tree and the</text><text start="47.719" dur="4.64">cellulose which is the wood fibers is</text><text start="49.84" dur="4.92">very strong making it hard to snap in</text><text start="52.359" dur="4.04">this direction however the lignan is</text><text start="54.76" dur="4.16">much weaker making this whole thing</text><text start="56.399" dur="5.041">easier to split unless of course you&amp;#39;re</text><text start="58.92" dur="4.88">weak like me and they both suck wood</text><text start="61.44" dur="4.2">also has two distinct surfaces first you</text><text start="63.8" dur="3.88">have face grain also known as Edge</text><text start="65.64" dur="4.32">depending on your orientation and then</text><text start="67.68" dur="3.64">end grain which is self-explanatory if</text><text start="69.96" dur="3.4">you look at the end grain under a</text><text start="71.32" dur="4.68">microscope it looks just like well a</text><text start="73.36" dur="4.96">bundle of straws making it more porous</text><text start="76" dur="4.24">so the blanket statement that glue is</text><text start="78.32" dur="3.839">stronger than wood isn&amp;#39;t entirely</text><text start="80.24" dur="3.48">accurate yes it is stronger than the</text><text start="82.159" dur="3.081">lignan which holds all the fibers</text><text start="83.72" dur="3">together which is why these boards I</text><text start="85.24" dur="3.48">glued yesterday won&amp;#39;t break along the</text><text start="86.72" dur="4">glue line when I go all Hulk mode the</text><text start="88.72" dur="3.64">ligan is what&amp;#39;s giving way here but if</text><text start="90.72" dur="3.88">you glue two boards together end grain</text><text start="92.36" dur="4.56">to end grain the glue joint will break</text><text start="94.6" dur="4.08">before the wood because the cellulose is</text><text start="96.92" dur="3.36">stronger than the glue now that we&amp;#39;re</text><text start="98.68" dur="3.6">all speaking the same language let&amp;#39;s get</text><text start="100.28" dur="4.6">on with it when you want to join two</text><text start="102.28" dur="5.119">pieces of wood or I guess straws</text><text start="104.88" dur="4.839">together I&amp;#39;m sorry C Turtles at a 90°</text><text start="107.399" dur="4.161">angle it&amp;#39;s known as a butt joint before</text><text start="109.719" dur="4.68">you cut and assemble it&amp;#39;s best to verify</text><text start="111.56" dur="4">your saw is actually at 90° and if you</text><text start="114.399" dur="2.481">hold your work piece up with a</text><text start="115.56" dur="3.839">combination Square you shouldn&amp;#39;t see</text><text start="116.88" dur="3.96">light peeking through if it&amp;#39;s off go</text><text start="119.399" dur="3.521">back and fix it because it&amp;#39;s not going</text><text start="120.84" dur="4.36">to magically correct itself during the</text><text start="122.92" dur="5.24">assembly here&amp;#39;s the problem though it&amp;#39;s</text><text start="125.2" dur="4.72">an end grain to a face grain connection</text><text start="128.16" dur="3.92">applying glue to the end of a board is</text><text start="129.92" dur="4.44">like well pouring it into the open end</text><text start="132.08" dur="4.12">of a straw meaning you lose a lot of the</text><text start="134.36" dur="3.76">glue strength there is a little bit of a</text><text start="136.2" dur="4.399">trick to work around that I like to</text><text start="138.12" dur="4.479">apply a layer of glue let it soak in for</text><text start="140.599" dur="4">5 minutes or so then apply a second</text><text start="142.599" dur="4.161">layer which will somewhat sit on top of</text><text start="144.599" dur="4.121">the first layer but even then this is</text><text start="146.76" dur="3.72">still a weakish joint I mean it&amp;#39;s fine</text><text start="148.72" dur="3.879">for a decorative box that will sit on a</text><text start="150.48" dur="4.32">shelf not so much for anything that will</text><text start="152.599" dur="4.601">be stressed so how do you strengthen it</text><text start="154.8" dur="4">or skip the glue all together now if</text><text start="157.2" dur="3.039">you&amp;#39;re an old timey folk or you&amp;#39;re</text><text start="158.8" dur="3.28">building a house you can just smash some</text><text start="160.239" dur="4.681">Nails right in there but we are neither</text><text start="162.08" dur="4.12">of those things which leads us to screws</text><text start="164.92" dur="3.16">and since you&amp;#39;re going to be sinking</text><text start="166.2" dur="3.84">this into the end grain I would</text><text start="168.08" dur="3.96">recommend drilling a pilot hole to keep</text><text start="170.04" dur="3.839">this from cracking your pilot hole drill</text><text start="172.04" dur="4.08">bit should be the same thickness of the</text><text start="173.879" dur="4.321">screw shank you&amp;#39;re using not including</text><text start="176.12" dur="3.759">the threads but don&amp;#39;t actually drill yet</text><text start="178.2" dur="4.2">because I bet most of you don&amp;#39;t know the</text><text start="179.879" dur="4.92">this next tip a standard wood screw has</text><text start="182.4" dur="4.52">a smooth shoulder area and the idea is</text><text start="184.799" dur="4.041">to counter SN it deep enough so that the</text><text start="186.92" dur="4.12">smooth portion stays in the top piece</text><text start="188.84" dur="4.039">and the threads are in the bottom board</text><text start="191.04" dur="3.839">which will pull the two pieces together</text><text start="192.879" dur="4.201">after doing your counter syn then drill</text><text start="194.879" dur="3.881">your pilot hole in the center a fully</text><text start="197.08" dur="3">Threaded Screw will still be more than</text><text start="198.76" dur="3.039">strong enough but let&amp;#39;s say your joint</text><text start="200.08" dur="3.84">is a little out of whack and there&amp;#39;s a</text><text start="201.799" dur="3.841">gap between the boards thanks to science</text><text start="203.92" dur="3.28">and physics a partially Threaded Screw</text><text start="205.64" dur="3.879">is more likely to bring it all together</text><text start="207.2" dur="4.48">nice nice if it&amp;#39;s something crude you</text><text start="209.519" dur="3.761">can leave this exposed but one of my</text><text start="211.68" dur="4.199">favorite ways to clean it up is by</text><text start="213.28" dur="4.2">plugging the holes drilling out plugs</text><text start="215.879" dur="3.36">with a plug cutter using off cuts from</text><text start="217.48" dur="4.16">the same project can really hide</text><text start="219.239" dur="4.36">everything or you can use a contrasting</text><text start="221.64" dur="3.84">wood as a design detail which is</text><text start="223.599" dur="4.161">something I really like to do either one</text><text start="225.48" dur="4.44">is going to take your project from me to</text><text start="227.76" dur="4.16">pretty good another common way to</text><text start="229.92" dur="4.2">strengthen a butt joint especially in</text><text start="231.92" dur="4.319">Cabinetry or the underside of a build</text><text start="234.12" dur="3.88">that will never be seen are pocket holes</text><text start="236.239" dur="3.681">the primary difference between pocket</text><text start="238" dur="3.599">holes and the traditional screw method</text><text start="239.92" dur="3.92">is pocket holes are drilled in at an</text><text start="241.599" dur="4.241">angle as opposed to perpendicular which</text><text start="243.84" dur="4.319">can make them stronger but if you watch</text><text start="245.84" dur="4.679">any of my previous videos the stronger</text><text start="248.159" dur="4.28">debate is generally nonsense to me</text><text start="250.519" dur="3.481">because all these joint strength tests</text><text start="252.439" dur="3.841">never mimic actual stretches on</text><text start="254" dur="4.04">furniture where loads are distributed by</text><text start="256.28" dur="4">multiple joints they just like to show</text><text start="258.04" dur="4.159">the shock factor of snapping a shitty</text><text start="260.28" dur="4.72">boomerang in half think</text><text start="262.199" dur="4.641">fast all right so a butt joint is end</text><text start="265" dur="4.24">grain connected to face grain but what</text><text start="266.84" dur="3.52">about end grain to end grain now I&amp;#39;m</text><text start="269.24" dur="2.6">sure someone will correct me in the</text><text start="270.36" dur="4.08">comment section but really the only time</text><text start="271.84" dur="4.639">you use a joint like this is a miter two</text><text start="274.44" dur="3.28">boards joined together at an angle these</text><text start="276.479" dur="3.44">are used in a lot of the same</text><text start="277.72" dur="4.64">applications as butt joints but the main</text><text start="279.919" dur="4.241">difference is the final look because the</text><text start="282.36" dur="4.119">two boards come together at an angle</text><text start="284.16" dur="4.599">there is no end grain exposed giving it</text><text start="286.479" dur="4.241">a cleaner look plus miters are</text><text start="288.759" dur="4.361">technically stronger however like most</text><text start="290.72" dur="4.16">things in life the stronger and better-</text><text start="293.12" dur="3.76">looking miter is a little trickier to</text><text start="294.88" dur="3.84">execute let&amp;#39;s say I want to cut a quick</text><text start="296.88" dur="3.759">picture frame on my miter saw first I</text><text start="298.72" dur="4.6">will ensure that my is actually cutting</text><text start="300.639" dur="4.801">at 45° using a test piece in my</text><text start="303.32" dur="4.08">combination square and that removes one</text><text start="305.44" dur="3.68">variable then I can set up a stop block</text><text start="307.4" dur="3.639">to ensure my parts will be identical</text><text start="309.12" dur="3.4">lengths and if you don&amp;#39;t do that you</text><text start="311.039" dur="3.361">might think you&amp;#39;re crushing it during</text><text start="312.52" dur="3.44">the assembly until you get to that last</text><text start="314.4" dur="3.72">joint and then you&amp;#39;ll go from garage</text><text start="315.96" dur="4.72">shop hero to foolish in</text><text start="318.12" dur="5.799">seconds with the picture frame we made</text><text start="320.68" dur="5.639">Cuts with the blade at 90° and then we</text><text start="323.919" dur="4.72">Chang the orientation relative to the</text><text start="326.319" dur="5.241">workpiece but let&amp;#39;s say you want to make</text><text start="328.639" dur="5.441">a 45° cut along the length of this board</text><text start="331.56" dur="4.16">it&amp;#39;s too long for the miter saw in this</text><text start="334.08" dur="4.28">case you need to change the blade angle</text><text start="335.72" dur="4.16">on your table saw then make your cut and</text><text start="338.36" dur="4.399">a quick tip is to set the blade just</text><text start="339.88" dur="5.12">beyond 45° because that will pinch the</text><text start="342.759" dur="4">end of the miter together although I</text><text start="345" dur="2.84">think this is technically called a bevel</text><text start="346.759" dur="3.201">quite honestly it doesn&amp;#39;t matter what</text><text start="347.84" dur="3.84">you refer to it as just keep the wood</text><text start="349.96" dur="3.72">snug down on the table so you get a nice</text><text start="351.68" dur="3.639">clean cut and if you&amp;#39;re working with</text><text start="353.68" dur="2.959">stock that&amp;#39;s less than 1 in thick you</text><text start="355.319" dur="3.641">can also do the same thing with a</text><text start="356.639" dur="4.041">chamfer bit on the router table in both</text><text start="358.96" dur="4.48">of these methods are the most common</text><text start="360.68" dur="4.84">when cutting parts for cases or boxes</text><text start="363.44" dur="3.759">another benefit to the miter joint is</text><text start="365.52" dur="3.64">that you can fake the appearance of a</text><text start="367.199" dur="4.12">thicker board because the end grain is</text><text start="369.16" dur="3.92">hidden I recently published a video on</text><text start="371.319" dur="3.6">making floating shelves and while this</text><text start="373.08" dur="4.32">looks like a 2 and 1/2 in thick piece of</text><text start="374.919" dur="4.801">wood it&amp;#39;s actually just a piece of 3/4</text><text start="377.4" dur="4.199">in plywood folded over after I cut the</text><text start="379.72" dur="3.72">parts on the table saw you might be</text><text start="381.599" dur="4.121">thinking is that joint strong enough</text><text start="383.44" dur="4.72">with just glue when you have a nice long</text><text start="385.72" dur="4.36">Edge it is shockingly strong seriously</text><text start="388.16" dur="4">try making a box like this and then try</text><text start="390.08" dur="4.36">breaking it apart it&amp;#39;s just not going to</text><text start="392.16" dur="4.24">happen however something that doesn&amp;#39;t</text><text start="394.44" dur="4.08">have a lot of glue surface area like</text><text start="396.4" dur="3.72">this picture frame likely needs to be</text><text start="398.52" dur="4.28">reinforced and the most common method</text><text start="400.12" dur="3.68">for doing that is with splines however</text><text start="402.8" dur="2.399">when I was first getting started</text><text start="403.8" dur="3.48">Woodworking and I would watch a video</text><text start="405.199" dur="3.521">like this I always get so frustrated</text><text start="407.28" dur="3.479">when they told me I had to build another</text><text start="408.72" dur="4.24">jig and I would end up not building that</text><text start="410.759" dur="4.521">thing so with that being said here&amp;#39;s a</text><text start="412.96" dur="3.959">simple way to do it using a forer bit</text><text start="415.28" dur="3.759">and a jigsaw I&amp;#39;m going to draw out a</text><text start="416.919" dur="3.881">couple holes right along the miter and</text><text start="419.039" dur="3.801">then use that same bit to trace some</text><text start="420.8" dur="4.679">circles on a piece of plywood and cut</text><text start="422.84" dur="5">them out with the jigsaw and then plop</text><text start="425.479" dur="4.601">those into place with some glue is it</text><text start="427.84" dur="3.919">perfect no but it&amp;#39;s the back of a frame</text><text start="430.08" dur="3.119">and only the wall will ever know what</text><text start="431.759" dur="4.081">you</text><text start="433.199" dur="4.84">did like the contrasting plugs from the</text><text start="435.84" dur="4.24">butt joint splines can add a really nice</text><text start="438.039" dur="4">design feature in keeping with the theme</text><text start="440.08" dur="3.959">of no jigs you can actually cut splines</text><text start="442.039" dur="4.401">making a soft cut on the table saw for</text><text start="444.039" dur="4.16">larger items like boxes but I would</text><text start="446.44" dur="3.759">still recommend making a jig for thin</text><text start="448.199" dur="4.641">builds like picture frames to reduce the</text><text start="450.199" dur="4.44">sketch factor or skip the table saw alt</text><text start="452.84" dur="3.32">together and use the router table I&amp;#39;ve</text><text start="454.639" dur="3.601">even seen a few folks use a biscuit</text><text start="456.16" dur="4.64">cutter but the idea is you&amp;#39;re creating a</text><text start="458.24" dur="4.12">Groove to slide in another piece of wood</text><text start="460.8" dur="3.88">which will give you face grain to face</text><text start="462.36" dur="4.32">grain connection that is very strong</text><text start="464.68" dur="3.359">however it&amp;#39;s very important to pay</text><text start="466.68" dur="3.84">attention to the grain direction of your</text><text start="468.039" dur="4.401">spline so it&amp;#39;s running across the miter</text><text start="470.52" dur="4.32">if you insert it the opposite way you&amp;#39;ll</text><text start="472.44" dur="4.159">notice the wood is much weaker miters</text><text start="474.84" dur="3.199">can be an absolute nightmare when you&amp;#39;re</text><text start="476.599" dur="3.241">first getting started but it&amp;#39;s worth</text><text start="478.039" dur="3.72">practicing because they open up A Whole</text><text start="479.84" dur="4.52">New World of builds that&amp;#39;ll trick people</text><text start="481.759" dur="4.801">into thinking you&amp;#39;re actually good at</text><text start="484.36" dur="4.44">woodworking another important note for</text><text start="486.56" dur="4.199">our butt or miter joints if you like the</text><text start="488.8" dur="5.28">look plus you want to make sure they are</text><text start="490.759" dur="5.641">extra beefy without using screws splines</text><text start="494.08" dur="5.6">plugs or any visible reinforcement</text><text start="496.4" dur="4.96">methods dowels are your new best friend</text><text start="499.68" dur="3.04">they are completely hidden and do</text><text start="501.36" dur="3.519">provide additional benefits like</text><text start="502.72" dur="3.72">aligning mating faces there are plenty</text><text start="504.879" dur="3.641">of Dow jigs on the market you can even</text><text start="506.44" dur="3.879">make your own for no particular reason</text><text start="508.52" dur="3.6">I&amp;#39;ve always opted for other techniques</text><text start="510.319" dur="4.561">because I find the process a touch</text><text start="512.12" dur="5.039">cumbersome however like I said they can</text><text start="514.88" dur="4.159">provide Incredible strength and won&amp;#39;t</text><text start="517.159" dur="4.081">break the budget it&amp;#39;s time to graduate</text><text start="519.039" dur="3.841">to the bread and butter of joinery Doos</text><text start="521.24" dur="3.92">grooves and rabbits which are the</text><text start="522.88" dur="3.56">building blocks for countless projects</text><text start="525.16" dur="3.48">now before we jump in let&amp;#39;s actually</text><text start="526.44" dur="4.16">clear the air they may look like inbred</text><text start="528.64" dur="4.199">cousins but each one has its own special</text><text start="530.6" dur="4.08">talent first up we have the data which</text><text start="532.839" dur="3.841">is a channel cut across the grain kind</text><text start="534.68" dur="3.8">of like a miniature Highway for another</text><text start="536.68" dur="3.96">piece of wood they can be cut with a</text><text start="538.48" dur="4.68">single blade on your table saw a DAT</text><text start="540.64" dur="4.16">stack miter saw router or other methods</text><text start="543.16" dur="4.919">they&amp;#39;re perfect for locking shelves into</text><text start="544.8" dur="5">cabinets or building Rock Solid frames</text><text start="548.079" dur="3.121">next on the family tree we have the</text><text start="549.8" dur="4.32">groove and this guy is similar to the</text><text start="551.2" dur="5">doo but it runs with the grain often</text><text start="554.12" dur="4.36">times a long skinny Valley you can cut</text><text start="556.2" dur="4.079">grooves with a router or a table saw</text><text start="558.48" dur="3.56">using a regular blade and it&amp;#39;s my</text><text start="560.279" dur="3.24">preferred method for drawer bottoms or</text><text start="562.04" dur="2.72">creating decorative inlays with</text><text start="563.519" dur="3.681">contrasting</text><text start="564.76" dur="4.639">wood and last but not least we have the</text><text start="567.2" dur="4.319">rabbit or rebate for our confusing n</text><text start="569.399" dur="4.56">American friends which is an L-shaped</text><text start="571.519" dur="3.88">cut found along the edge of a board</text><text start="573.959" dur="3.401">think of it like a little seat for</text><text start="575.399" dur="4.041">another piece to rest on you can use all</text><text start="577.36" dur="4.24">the same tools mentioned earlier to make</text><text start="579.44" dur="4.36">the cut plus a nice bonus item the</text><text start="581.6" dur="4.04">rabbiting bit and I use these all the</text><text start="583.8" dur="3.84">time for insetting panels on the back of</text><text start="585.64" dur="4.319">cabinets they&amp;#39;re also great for drawer</text><text start="587.64" dur="4.56">fronts and backs so what&amp;#39;s the main</text><text start="589.959" dur="3.761">advantage of our deliverance family over</text><text start="592.2" dur="4.84">the butt and miter</text><text start="593.72" dur="5.359">joints glue well more specifically glue</text><text start="597.04" dur="4.16">surface area notice how much more wood</text><text start="599.079" dur="3.641">to would contact a DAT has over a</text><text start="601.2" dur="3.199">standard butt joint and since you were</text><text start="602.72" dur="3.16">paying attention earlier you know all</text><text start="604.399" dur="4.201">about glue being stronger than the</text><text start="605.88" dur="4.32">lignan additionally aside from strength</text><text start="608.6" dur="3">these joints can be easier to assemble</text><text start="610.2" dur="3.28">because they do a decent job of</text><text start="611.6" dur="3.479">remaining Square on their own you might</text><text start="613.48" dur="3.56">be asking if these three joints need to</text><text start="615.079" dur="3.361">be reinforced and I&amp;#39;ll answer that in a</text><text start="617.04" dur="3.12">moment but it&amp;#39;s likely not what you&amp;#39;re</text><text start="618.44" dur="3.68">thinking first I want to give you some</text><text start="620.16" dur="4.52">of my favorite tips for cutting RAB</text><text start="622.12" dur="3.64">gravados that was the best word mashup I</text><text start="624.68" dur="2.88">could come up with if you got something</text><text start="625.76" dur="3.84">better let me know when it comes to</text><text start="627.56" dur="4.16">setting blade in router bit de depths</text><text start="629.6" dur="4.32">the general R of thumb is 1/3 the</text><text start="631.72" dur="4.239">material thickness and if you have a 3/4</text><text start="633.92" dur="3.919">in board set your blade to/ qu of an</text><text start="635.959" dur="3.88">inch now if you&amp;#39;re using a single blade</text><text start="637.839" dur="4.24">on the saw or even an undersized dat</text><text start="639.839" dur="4.68">stack sneak up on your cut using test</text><text start="642.079" dur="3.721">pieces checking the fit along the way</text><text start="644.519" dur="2.841">router bits get a little more</text><text start="645.8" dur="4.2">complicated and it&amp;#39;s best to work in</text><text start="647.36" dur="5.32">reverse and plain boards down to match</text><text start="650" dur="4.639">widths or by specialty size plywood bits</text><text start="652.68" dur="4.48">if you&amp;#39;re working with sheet Goods as</text><text start="654.639" dur="4.32">far as the fit you want something snug</text><text start="657.16" dur="3.919">that doesn&amp;#39;t require too much force to</text><text start="658.959" dur="4.041">get it to sit properly in the data or</text><text start="661.079" dur="3.601">Groove you should be able to pick the</text><text start="663" dur="3.68">parts up together and friction keeps it</text><text start="664.68" dur="4.04">from falling apart too loose and you</text><text start="666.68" dur="4.08">don&amp;#39;t get the benefits of glue surface</text><text start="668.72" dur="3.48">contact too tight and you&amp;#39;re likely not</text><text start="670.76" dur="3.519">going to be able to assemble your</text><text start="672.2" dur="4.56">project back to the question you might</text><text start="674.279" dur="5.041">be asking do I need something other than</text><text start="676.76" dur="4.16">glue for these joints now datos and</text><text start="679.32" dur="3.72">grooves are already locked into the wood</text><text start="680.92" dur="4.52">so absolutely not but what about the</text><text start="683.04" dur="4.56">rabbits believe it or not when you add a</text><text start="685.44" dur="3.88">dowel to a rabbit it actually weakens</text><text start="687.6" dur="3.239">The Joint my buddy Scott Walsh did a</text><text start="689.32" dur="3.16">whole video showing the results if you</text><text start="690.839" dur="3.56">don&amp;#39;t believe me and I&amp;#39;ll leave a link</text><text start="692.48" dur="4.359">below so you can check it out but glue</text><text start="694.399" dur="3.641">alone is all you need for these three</text><text start="696.839" dur="3.281">inbred</text><text start="698.04" dur="3.799">cousins while we&amp;#39;re on the topic of</text><text start="700.12" dur="3.719">strength there&amp;#39;s another joint that is</text><text start="701.839" dur="4.44">very similar to miters and rabbits that</text><text start="703.839" dur="5.281">The Woodworking Gatekeepers love to hang</text><text start="706.279" dur="4.641">over your head dovetails and there is no</text><text start="709.12" dur="3.32">doubt that a proper handcut dovetail is</text><text start="710.92" dur="3.919">not only awesome visually but the mark</text><text start="712.44" dur="5.12">of a talented Craftsman it&amp;#39;s way above</text><text start="714.839" dur="5.281">my pay grade although I did use a</text><text start="717.56" dur="4.04">handheld router to make this</text><text start="720.12" dur="3.959">here&amp;#39;s the deal though if you want to</text><text start="721.6" dur="4.72">get technical pushing 100-year longevity</text><text start="724.079" dur="4.44">to the side dovetails are actually</text><text start="726.32" dur="4.319">weaker than rabbits and miters and if</text><text start="728.519" dur="3.76">you want to talk about longevity well we</text><text start="730.639" dur="3.521">can&amp;#39;t because modern wood glues haven&amp;#39;t</text><text start="732.279" dur="3.601">been around that long maybe someone will</text><text start="734.16" dur="4.16">remind me in 50 years for us to do a</text><text start="735.88" dur="4.399">follow-up and I know I like to rag on</text><text start="738.32" dur="4.04">these joint strength videos but the data</text><text start="740.279" dur="4">actually shows if strength is your main</text><text start="742.36" dur="4.279">concern a looser fitting worse dubet</text><text start="744.279" dur="4">tail within reason will actually be</text><text start="746.639" dur="3.64">stronger than a perfectly cut one it&amp;#39;s</text><text start="748.279" dur="5.36">the same thing with box joints and why</text><text start="750.279" dur="4.761">is that you guessed it glue because less</text><text start="753.639" dur="4.081">glue will be squeezed out and we&amp;#39;ve</text><text start="755.04" dur="4.039">learned just how strong modern glue is</text><text start="757.72" dur="3.52">at the end of the day if someone tells</text><text start="759.079" dur="4.88">you that your rabbits or miters aren&amp;#39;t</text><text start="761.24" dur="4.88">strong enough they&amp;#39;re 100% Incorrect and</text><text start="763.959" dur="4.041">while dub tails look cool beginners need</text><text start="766.12" dur="3.76">to focus on the joints in this video</text><text start="768" dur="4.279">first because they are way more</text><text start="769.88" dur="3.959">versatile aside from knowing what joints</text><text start="772.279" dur="3.401">to use and getting your machines</text><text start="773.839" dur="3.841">calibrated part of the secret sauce to</text><text start="775.68" dur="4.92">ending up with tight fits are quality</text><text start="777.68" dur="4.24">layout tools and knowing what to use now</text><text start="780.6" dur="3.479">for any beginner when it comes to</text><text start="781.92" dur="3.719">joinery start with a good combination</text><text start="784.079" dur="3.481">and double square and if you watch my</text><text start="785.639" dur="3.841">videos for any length of time you&amp;#39;ve</text><text start="787.56" dur="4.639">likely seen me using this assortment</text><text start="789.48" dur="4.599">from PE now what I like about this 4-in</text><text start="792.199" dur="3.561">double square is that it&amp;#39;s small enough</text><text start="794.079" dur="3.721">that it&amp;#39;s easy to handle when you&amp;#39;re</text><text start="795.76" dur="4.24">working on edges plus you get access to</text><text start="797.8" dur="4.839">both sides if you&amp;#39;re someone who builds</text><text start="800" dur="5.079">larger projects like I do a good 12-in</text><text start="802.639" dur="3.841">combination Square will be very handy</text><text start="805.079" dur="3.2">and the nice thing is they are great for</text><text start="806.48" dur="4.32">checking 45s like you saw me doing</text><text start="808.279" dur="4.641">earlier now PC manufactures these</text><text start="810.8" dur="4.52">squares in the US using highquality</text><text start="812.92" dur="4.32">carbon steel and all the rules have</text><text start="815.32" dur="4.199">etched graduations if you want to use a</text><text start="817.24" dur="4.92">marking knife sounds a little bit like</text><text start="819.519" dur="4.201">this pretty good right their squares are</text><text start="822.16" dur="3.919">guaranteed accurate to some crazy</text><text start="823.72" dur="4.04">tolerance I want to say it&amp;#39;s like 2,000</text><text start="826.079" dur="3.841">of an inch and if you need anything</text><text start="827.76" dur="4.56">better than that go build a spaceship</text><text start="829.92" dur="4.52">but everything on these is such high</text><text start="832.32" dur="3.48">quality without being outrageously</text><text start="834.44" dur="3.8">priced which is why I&amp;#39;ve been using them</text><text start="835.8" dur="3.76">for 3 years now when they reached out a</text><text start="838.24" dur="3.839">year or so ago and asked about a</text><text start="839.56" dur="4.76">partnership it was the easiest yes ever</text><text start="842.079" dur="4.76">cuz I was already a customer and user</text><text start="844.32" dur="5.24">PEC also sells a variety of other layout</text><text start="846.839" dur="4.641">tools made Stateside using only quality</text><text start="849.56" dur="3.6">materials that I think makes them the</text><text start="851.48" dur="3.919">best bang for your buck in this category</text><text start="853.16" dur="3.359">no questions asked I promise you this is</text><text start="855.399" dur="3.281">not a purchase that you&amp;#39;re going to</text><text start="856.519" dur="3.841">regret I get messages and emails all the</text><text start="858.68" dur="3.8">time from people who are happy that I</text><text start="860.36" dur="4.64">turned them on to this brand so a big</text><text start="862.48" dur="5.08">thanks to PC for supporting me to make</text><text start="865" dur="4.519">videos like this one not technically in</text><text start="867.56" dur="4.76">the same family but somewhat related to</text><text start="869.519" dur="4.401">RAB grados are half and crosslaps some</text><text start="872.32" dur="4.199">of my favorite joints to make but they</text><text start="873.92" dur="4.599">can be a bit pernety and the idea with</text><text start="876.519" dur="4">lap joints is to join two boards</text><text start="878.519" dur="3.521">together so both faces are flush with</text><text start="880.519" dur="4.041">one another it&amp;#39;s like what you get with</text><text start="882.04" dur="4.44">a butt or miter however the two pieces</text><text start="884.56" dur="4.279">are cut in a way that they do a bit of a</text><text start="886.48" dur="4.24">high five and that handshake creates an</text><text start="888.839" dur="4.12">incredible amount of surface area for</text><text start="890.72" dur="4.72">our good friend Mr glue making this one</text><text start="892.959" dur="4.201">of the strongest joints in woodworking</text><text start="895.44" dur="3.959">half and crosslaps can be used for</text><text start="897.16" dur="4.119">everything from a basic picture frame to</text><text start="899.399" dur="3.641">chair parts to the rigid base of a</text><text start="901.279" dur="3.281">workbench and their versatility and</text><text start="903.04" dur="4.4">strength makes them one of the most</text><text start="904.56" dur="5.16">valuable joints in Your Arsenal the only</text><text start="907.44" dur="4.68">downside is the exposed engrain which</text><text start="909.72" dur="4.359">can detract from the design and getting</text><text start="912.12" dur="3.639">them dialed in just right now you might</text><text start="914.079" dur="4.081">have figured this out already but laps</text><text start="915.759" dur="4.281">are really just ancestral doos and</text><text start="918.16" dur="4.119">rabbits so you can use all the same</text><text start="920.04" dur="5.039">tools to make the cut the trick is</text><text start="922.279" dur="4.24">getting your blade or bit set to exactly</text><text start="925.079" dur="4.161">half the material thickness and I&amp;#39;ll</text><text start="926.519" dur="5.081">demonstrate on my table saw Which is my</text><text start="929.24" dur="4.2">method Now using a scrap that&amp;#39;s the same</text><text start="931.6" dur="4.359">thickness as your workpiece set your</text><text start="933.44" dur="4.36">blade to slightly lower than halfway and</text><text start="935.959" dur="3.68">then position a stop block so the end of</text><text start="937.8" dur="3.839">the workpiece is just right in the</text><text start="939.639" dur="4.481">center of the blade I&amp;#39;m going to make a</text><text start="941.639" dur="4.361">cut let&amp;#39;s call that the a cut and then</text><text start="944.12" dur="4.04">flip the board over and repeat for the B</text><text start="946" dur="4.48">cut you should have a nice thin strip</text><text start="948.16" dur="3.84">left because the blade is still too low</text><text start="950.48" dur="4.279">so barely raise the blade and then</text><text start="952" dur="4.92">repeat those cuts your blade is at the</text><text start="954.759" dur="4.64">perfect height when your a cut leaves</text><text start="956.92" dur="4.839">this tiny sliver that the B cut cleans</text><text start="959.399" dur="5.041">up and lock that into place and don&amp;#39;t</text><text start="961.759" dur="4.361">move it blade height is only half the</text><text start="964.44" dur="3.44">battle though because if you&amp;#39;re making a</text><text start="966.12" dur="4.36">bunch of cross laps you need a way to</text><text start="967.88" dur="5">easily cut the correct width on both</text><text start="970.48" dur="4.76">pieces for instance if I want to join</text><text start="972.88" dur="4.399">these boards I&amp;#39;ll line up my first cut</text><text start="975.24" dur="3.92">with the saw blade and then place my</text><text start="977.279" dur="4.081">mating piece to the side in position a</text><text start="979.16" dur="4.039">stop block but notice what happens when</text><text start="981.36" dur="4.12">you remove that board and slide</text><text start="983.199" dur="4.681">everything over the edge of the blade is</text><text start="985.48" dur="4.56">outside the line meaning if I make the</text><text start="987.88" dur="4.439">cut the joint will be be too wide by</text><text start="990.04" dur="4.4">exactly the width of my table saw blade</text><text start="992.319" dur="3.88">and that&amp;#39;s known as the curve my</text><text start="994.44" dur="3.839">preferred method to combat that is to</text><text start="996.199" dur="3.721">use a curf maker you can build these but</text><text start="998.279" dur="3.68">for as cheap as they are just save</text><text start="999.92" dur="4">yourself the hassle and buy and what</text><text start="1001.959" dur="3.8">makes these fun little tools so handy is</text><text start="1003.92" dur="4.479">that they are adjustable to account for</text><text start="1005.759" dur="4.801">two things your material width and the</text><text start="1008.399" dur="4.12">curve of your saw blade because it&amp;#39;s</text><text start="1010.56" dur="3.6">offset at the end and this takes out all</text><text start="1012.519" dur="3.88">the guesswork and you&amp;#39;re left with</text><text start="1014.16" dur="4.08">perfect fitting laps that you can batch</text><text start="1016.399" dur="3.36">out over and over again look there is</text><text start="1018.24" dur="3.519">nothing wrong with the more technical</text><text start="1019.759" dur="4.56">joints like dovetails or mortise and</text><text start="1021.759" dur="4.241">Tenon although in many situations lap</text><text start="1024.319" dur="3.36">joints are technically stronger than</text><text start="1026" dur="3.199">mortise and Tenon but I don&amp;#39;t want to</text><text start="1027.679" dur="3.12">get the Grumps even more worked up than</text><text start="1029.199" dur="4.521">they already are so I&amp;#39;m going to leave</text><text start="1030.799" dur="5.361">that one alone the point is butt joints</text><text start="1033.72" dur="4.64">miters rap Gros will cover just about</text><text start="1036.16" dur="4.799">all your bases to start building right</text><text start="1038.36" dur="4.719">now so what are you waiting for ignore</text><text start="1040.959" dur="5.96">the naysayers go get out there and make</text><text start="1043.079" dur="3.84">a bunch of mistakes we&amp;#39;ll see you</text></transcript>`;
+
+// document.all["input-text"].innerHTML = parseSubtitleXML(xml);
+
+/**
+ * Converts WebVTT format to a simplified timestamp format
+ * @param {string} webVTT - The WebVTT formatted string
+ * @returns {string} - The converted text with simplified timestamps
+ */
+ function convertWebVTTFormat(webVTT) {
+    // Split input into lines
+    const lines = webVTT.trim().split('\n');
+    
+    // Store processed captions
+    const processedCaptions = [];
+    
+    // Skip header lines (WEBVTT and metadata)
+    let i = 0;
+    while (i < lines.length && !lines[i].includes('-->')) {
+        i++;
+    }
+    
+    // Process caption blocks
+    while (i < lines.length) {
+        const timeLine = lines[i];
+        
+        // Skip empty lines
+        if (!timeLine.trim()) {
+            i++;
+            continue;
+        }
+        
+        // Extract timestamps
+        if (timeLine.includes('-->')) {
+            const timestamps = timeLine.split('-->').map(t => t.trim());
+            const startTime = convertTimestamp(timestamps[0]);
+            const endTime = convertTimestamp(timestamps[1]);
+            
+            // Get the caption text (might be on multiple lines)
+            let captionText = '';
+            i++;
+            while (i < lines.length && lines[i].trim() && !lines[i].includes('-->')) {
+                captionText += (captionText ? ' ' : '') + lines[i].trim();
+                i++;
+            }
+            
+            // Format and store the processed caption
+            processedCaptions.push(`[${startTime} - ${endTime}] ${captionText}`);
+        } else {
+            i++;
+        }
+    }
+    
+    return processedCaptions.join('\n');
+}
+
+/**
+ * Converts WebVTT timestamp to simplified format
+ * @param {string} timestamp - WebVTT timestamp (00:00:00.000)
+ * @returns {string} - Simplified timestamp (MM:SS)
+ */
+function convertTimestamp(timestamp) {
+    const match = timestamp.match(/(\d{2}):(\d{2}):(\d{2})/);
+    if (!match) return '00:00';
+    
+    const [_, hours, minutes, seconds] = match;
+    const totalMinutes = parseInt(hours) * 60 + parseInt(minutes);
+    return `${totalMinutes.toString().padStart(2, '0')}:${seconds}`;
+}
+
+async function getSubs(videoId) {
+    let r = await fetch(`./vtt/${videoId}.vtt`);
+    return convertWebVTTFormat(await r.text());
+}
+
+async function init() {
+    let params = new URLSearchParams(document.location.search);
+    let vid = params.get("videoId") || "X-6jMi4e-0Q";
+    document.all["input-text"].innerHTML = await getSubs(vid);
+    document.all["query-text"].value = "";
+    loadVideo(vid)
+}
+
+init();
+
+</script>
