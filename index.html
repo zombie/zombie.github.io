@@ -144,9 +144,34 @@
                     }),
                     '*'
                 );
+                playerFrame.contentWindow.postMessage(
+                    JSON.stringify({
+                        event: 'command',
+                        func: 'playVideo',
+                        args: []
+                    }),
+                    '*'
+                );
             } catch (error) {
                 errorDiv.textContent = 'Error seeking video: ' + error.message;
             }
+        }
+
+        function onSubmit2() {
+            try {
+                highlightSelected(0);
+                playerFrame.contentWindow.postMessage(
+                    JSON.stringify({
+                        event: 'command',
+                        func: 'playVideo',
+                        args: []
+                    }),
+                    '*'
+                );
+            } catch(e) {
+                console.error(e);
+            }
+            return false;
         }
     </script>
 
@@ -200,7 +225,7 @@
                             <div class="col-md-10">
                                 <div class="form-floating input-group mb-2">
                                     <input type="text" id="query-text" class="form-control"
-                                        placeholder="Enter query here" value="food" />
+                                        placeholder="Enter query here" value="food"  autocomplete="off" />
                                     <label for="query-text">Semantic Query</label>
                                     <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#advancedFeaturesContent" id="settingsButton">
@@ -215,7 +240,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                <button onclick="onSubmit(); return false;" id="submit_button"
+                                <button onclick="onSubmit2(); return false;" id="submit_button"
                                     class="btn btn-primary submit-button  btn-lg mb-2 form-control" disabled>
                                     Loading...
                                 </button>
@@ -860,7 +885,7 @@
 </html>
 
 <script>
-    function convertSecondsToMMSS(totalSeconds) {
+function convertSecondsToMMSS(totalSeconds) {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = Math.floor(totalSeconds % 60);
     const paddedMinutes = minutes.toString().padStart(2, '0');
@@ -871,7 +896,7 @@
 function parseSubtitleXML(xmlString) {
     // Create a DOM parser
     const parser = new DOMParser();
-    
+
     // Parse the XML string
     const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
     
@@ -970,17 +995,37 @@ function convertTimestamp(timestamp) {
 
 async function getSubs(videoId) {
     let r = await fetch(`./vtt/${videoId}.vtt`);
-    return convertWebVTTFormat(await r.text());
+    let t = await r.text();
+    console.log("rr", t);
+    return convertWebVTTFormat(t);
 }
 
 async function init() {
     let params = new URLSearchParams(document.location.search);
     let vid = params.get("videoId") || "X-6jMi4e-0Q";
-    document.all["input-text"].innerHTML = await getSubs(vid);
-    document.all["query-text"].value = "";
-    loadVideo(vid)
+    console.log("vid", vid);
+    let subs = await getSubs(vid);
+    console.log("subs", subs);
+    window.codeMirror.setValue(subs);
+    let qt = document.all["query-text"];
+    qt.value = "";
+    loadVideo(vid);
+    window.onSubmit();
+    qt.addEventListener("input", () => {
+        window.onSubmit();
+    });
+    document.body.addEventListener("keyup", e => {
+        if (e.key === "ArrowDown") {
+            window.nextMarker();
+        }
+        if (e.key === "ArrowUp") {
+            window.prevMarker();
+        }
+    });
 }
 
-init();
+window.addEventListener("load", () => {
+    setTimeout(init, 2000);
+});
 
 </script>
