@@ -122,6 +122,12 @@ td {
   width: 100%;
   transition: background-color 0.3s ease;
 }
+.card div {
+  padding: 0.5em;
+}
+#results-list {
+  padding: 1em 0em;
+}
 
 .card:hover {
   background-color: #f8f9fa;
